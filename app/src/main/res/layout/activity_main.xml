@@ -8,6 +8,8 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
+
+    <!--툴바-->
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +35,7 @@
             />
     </androidx.appcompat.widget.Toolbar>
 
+    <!--오늘 날짜-->
     <TextView
         android:id="@+id/textView_today"
         android:layout_width="wrap_content"
@@ -41,6 +44,8 @@
         android:text="2021 - 03 - 21"
         android:textStyle="bold"
         android:textSize="15sp"/>
+
+    <!--오늘의 점수-->
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -133,6 +138,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!--기능 버튼-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -169,7 +175,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout_gallary"
+                android:id="@+id/linearLayout_gallery"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="1dp"
