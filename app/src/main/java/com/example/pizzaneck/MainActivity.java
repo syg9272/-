@@ -8,10 +8,19 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private long backPressedTime;   //뒤로가기 누른 시간. 뒤로가기 두번으로 종료 위한 변수
     LinearLayout realtime_btn, gallery_btn, stretching_btn, byDate_Btn;
+    TextView today;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +72,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //오늘 날짜 출력
+        today = (TextView)findViewById(R.id.textView_today);
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+        String date_str = format.format(date);
+        today.setText(date_str);
+    }
+
+    //뒤로가기 눌렀을때 호출. 뒤로가기 두번으로 앱 종료 위함
+    @Override
+    public void onBackPressed(){
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if(0 <= intervalTime && 2000 >= intervalTime){
+            super.onBackPressed();
+        } else{
+            backPressedTime = tempTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
