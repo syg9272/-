@@ -6,12 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
+
+    <!--툴바-->
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:background="#FFFFFF"
+        android:padding="20dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -19,23 +22,257 @@
             android:id="@+id/menu_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu"
+            android:layout_gravity="left"
             android:background="@android:color/transparent"
-            android:layout_gravity="left"/>
+            android:src="@drawable/ic_menu" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="날짜별 추이"
-            android:textColor="#0B3B79"
             android:fontFamily="@font/jalnan"
-            android:textSize="20sp"/>
+            android:text="날짜 별 자세 추이"
+            android:textColor="#0B3B79"
+            android:textSize="20sp" />
+
         <ImageButton
             android:id="@+id/setting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_setting"
+            android:layout_gravity="right"
             android:background="@android:color/transparent"
-            android:layout_gravity="right"/>
+            android:src="@drawable/ic_setting" />
     </androidx.appcompat.widget.Toolbar>
+
+    <!--날짜 변동가능하게 바꾸어야 함-->
+    <TextView
+        android:id="@+id/textView_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:text="2021.03.02 - 2021.03.08"
+        android:fontFamily="@font/typo_ssangmundong"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+
+    <!--그래프 범례-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:paddingHorizontal="130dp"
+        android:src="@drawable/graph_color" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/graph_total"
+        android:layout_width="340dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"/>
+
+    <!--그래프 임시 이미지로
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="190dp"
+        android:src="@drawable/graph_7days"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"/>-->
+
+    <!--하단 결과문장-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/jalnan"
+            android:text="이번 주 당신의 자세는"
+            android:textColor="#777777"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/jalnan"
+            android:text="GOOD"
+            android:textColor="#277E12"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#777777"
+        android:paddingHorizontal="50dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="총 알림 횟수는"
+            android:textColor="#777777"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="21회"
+            android:textColor="#E78515"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#777777"
+        android:paddingHorizontal="50dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="나쁜 자세 비율은"
+            android:textColor="#777777"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="40 %"
+            android:textColor="#070E64"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#777777"
+        android:paddingHorizontal="50dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="추천 스트레칭은"
+            android:textColor="#777777"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="5번 스트레칭"
+            android:textColor="#7D4799"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#777777"
+        android:paddingHorizontal="50dp"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="저번 주에 비해"
+            android:textColor="#777777"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jalnan"
+            android:text="노력이 필요합니다"
+            android:textColor="#9F0E0E"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="312dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#777777"
+        android:paddingHorizontal="50dp"></LinearLayout>
+
 </LinearLayout>

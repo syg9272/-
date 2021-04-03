@@ -71,7 +71,7 @@
                     android:text="최근 항목"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"/>
+                    android:textSize="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,14 +99,14 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:src="@drawable/album" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:text="즐겨찾는 항목"
                     android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="17dp"
-                    />
+                    android:textSize="16dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                     android:text="스크린 샷"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -180,7 +180,7 @@
                     android:text="움직이는 항목"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"/>
+                    android:textSize="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                     android:text="셀카"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                     android:text="비디오"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -287,7 +287,7 @@
                     android:text="최근 항목"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"/>
+                    android:textSize="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -320,7 +320,7 @@
                     android:text="즐겨찾는 항목"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
@@ -354,7 +354,7 @@
                     android:text="스크린 샷"
                     android:gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:textSize="17dp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
