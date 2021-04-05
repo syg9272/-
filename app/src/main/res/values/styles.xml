@@ -8,4 +8,8 @@
         <item name="android:colorBackground">@android:color/white</item>
     </style>
 
+    <!--스플래시 스크린 액티비티용 테마-->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:background">@drawable/ic_loding</item>
+    </style>
 </resources>
