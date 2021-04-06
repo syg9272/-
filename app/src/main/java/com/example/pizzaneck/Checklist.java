@@ -22,6 +22,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import android.widget.CheckBox;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,17 +72,17 @@ public class Checklist extends AppCompatActivity {
         final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
 
         //현재 날짜 텍스트뷰에 뿌려줌
-        tvDate.setText(curYearFormat.format(date) + "/" + curMonthFormat.format(date));
+        tvDate.setText(curYearFormat.format(date) + "년 " + curMonthFormat.format(date) + "월");
 
         //gridview 요일 표시
         dayList = new ArrayList<String>();
-        dayList.add("일");
-        dayList.add("월");
-        dayList.add("화");
-        dayList.add("수");
-        dayList.add("목");
-        dayList.add("금");
-        dayList.add("토");
+        dayList.add("Sun");
+        dayList.add("Mon");
+        dayList.add("Tue");
+        dayList.add("Wed");
+        dayList.add("Thu");
+        dayList.add("Fri");
+        dayList.add("Sat");
 
         mCal = Calendar.getInstance();
 
@@ -109,7 +111,6 @@ public class Checklist extends AppCompatActivity {
         for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
             dayList.add("" + (i + 1));
         }
-
     }
 
     /**
@@ -171,7 +172,8 @@ public class Checklist extends AppCompatActivity {
             Integer today = mCal.get(Calendar.DAY_OF_MONTH);
             String sToday = String.valueOf(today);
             if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
-                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.color_000000));
+                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.main_color));
+
             }
             return convertView;
         }

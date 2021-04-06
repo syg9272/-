@@ -9,4 +9,6 @@
     <color name="stretching_font">#585858</color>
     <color name="color_ffffff">#FFFFFF</color>
     <color name="color_000000">#000000</color>
+    <color name="color_day">#808080</color>
+
 </resources>
