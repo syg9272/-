@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="메뉴명"
+            android:text="설정"
             android:textColor="#0B3B79"
             android:fontFamily="@font/jalnan"
             android:textSize="20sp"/>

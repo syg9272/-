@@ -23,7 +23,7 @@
             android:text="메뉴명"
             android:textColor="#0B3B79"
             android:fontFamily="@font/jalnan"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
     </androidx.appcompat.widget.Toolbar>
 </LinearLayout>
