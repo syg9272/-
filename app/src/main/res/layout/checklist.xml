@@ -43,4 +43,33 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/navi_menu"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="70dp">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#093A7A"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="20sp" />
+
+        <GridView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gridview"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:numColumns="7"
+            android:listSelector="@android:color/transparent"
+            >
+        </GridView>
+
+    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
