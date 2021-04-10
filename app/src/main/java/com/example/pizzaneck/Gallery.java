@@ -1,6 +1,10 @@
 package com.example.pizzaneck;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +18,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.io.InputStream;
 
 public class Gallery extends AppCompatActivity {
 
@@ -32,8 +40,6 @@ public class Gallery extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery);
         setToolbar();
-
-
 
         album1_btn = (LinearLayout)findViewById(R.id.album1);
         album2_btn = (LinearLayout)findViewById(R.id.album2);
@@ -117,6 +123,7 @@ public class Gallery extends AppCompatActivity {
             }
         });
     }
+
     /* 툴바 및 툴바기능 설정 함수.
      * onCreate에서 호출
      * 클래스 내 DrawerLayout drawerLayout; NavigationView navView; Toolbar toolbar; 선언 필요
