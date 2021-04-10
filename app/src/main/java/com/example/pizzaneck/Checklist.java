@@ -6,6 +6,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import android.widget.Toast;
+import android.widget.LinearLayout;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +25,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import android.widget.CheckBox;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -41,6 +45,8 @@ public class Checklist extends AppCompatActivity {
     //캘린더//
     /*연/월 텍스트뷰*/
     private TextView tvDate;
+
+    private TextView check;
 
     /*그리드뷰 어댑터 */
     private GridAdapter gridAdapter;
@@ -72,7 +78,7 @@ public class Checklist extends AppCompatActivity {
         final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
 
         //현재 날짜 텍스트뷰에 뿌려줌
-        tvDate.setText(curYearFormat.format(date) + "년 " + curMonthFormat.format(date) + "월");
+        tvDate.setText(curYearFormat.format(date) + "년   " + curMonthFormat.format(date) + " 월");
 
         //gridview 요일 표시
         dayList = new ArrayList<String>();
@@ -98,6 +104,14 @@ public class Checklist extends AppCompatActivity {
         gridAdapter = new GridAdapter(getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
+        gridView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                check = (TextView) gridView.getChildAt(position).findViewById(R.id.tv_item_gridview);
+                check.setTextColor(getResources().getColor(R.color.color_000000));
+                gridView.getChildAt(position).setBackgroundColor(R.color.color_check_back);
+            }
+        });
     }
 
     /**
@@ -182,6 +196,9 @@ public class Checklist extends AppCompatActivity {
     private class ViewHolder {
         TextView tvItemGridView;
     }
+
+    /*그리드 뷰 클릭이벤트*/
+
 
     /* 툴바 및 툴바기능 설정 함수.
      * onCreate에서 호출
