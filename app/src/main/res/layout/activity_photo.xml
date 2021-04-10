@@ -35,12 +35,6 @@
             />
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:orientation="vertical"
-        android:background="@drawable/ic_edge"
-        >
         <ImageView
             android:id="@+id/photoImage"
             android:layout_width="344dp"
@@ -50,7 +44,6 @@
             android:layout_marginVertical="3dp"
             android:backgroundTint="#FFFFFF"
             android:src="@drawable/ic_photo" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/photo"
@@ -58,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="갤러리 바로가기"
         android:fontFamily="@font/jalnan"
-        android:layout_marginTop="7dp"
+        android:layout_marginBottom="10dp"
         />
 
     <LinearLayout
