@@ -10,5 +10,7 @@
     <color name="color_ffffff">#FFFFFF</color>
     <color name="color_000000">#000000</color>
     <color name="color_day">#808080</color>
+    <color name="color_check">#FF0000</color>
+    <color name="color_check_back">#4Dafeeee</color>
 
 </resources>
