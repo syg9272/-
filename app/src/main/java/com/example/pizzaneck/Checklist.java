@@ -27,6 +27,8 @@ import android.widget.TextView;
 
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -109,7 +111,7 @@ public class Checklist extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 check = (TextView) gridView.getChildAt(position).findViewById(R.id.tv_item_gridview);
                 check.setTextColor(getResources().getColor(R.color.color_000000));
-                gridView.getChildAt(position).setBackgroundColor(R.color.color_check_back);
+                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
             }
         });
     }
@@ -180,15 +182,25 @@ public class Checklist extends AppCompatActivity {
             }
             holder.tvItemGridView.setText("" + getItem(position));
 
+            if (position % 7 == 0) {
+                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.RED));
+            } else if (position % 7 == 6) {
+                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.BLUE));
+            }
+
             //해당 날짜 텍스트 컬러,배경 변경
             mCal = Calendar.getInstance();
             //오늘 day 가져옴
             Integer today = mCal.get(Calendar.DAY_OF_MONTH);
             String sToday = String.valueOf(today);
             if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
+                holder.tvItemGridView.setPaintFlags(holder.tvItemGridView.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 holder.tvItemGridView.setTextColor(getResources().getColor(R.color.main_color));
 
             }
+
+
+
             return convertView;
         }
     }
