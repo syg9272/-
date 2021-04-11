@@ -35,8 +35,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class Graph extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
@@ -50,6 +52,7 @@ public class Graph extends AppCompatActivity {
 
         BarChart barChart = findViewById(R.id.graph_total);
 
+        //임의의 값 설정
         ArrayList<BarEntry> visitors = new ArrayList<>();
         visitors.add(new BarEntry(17,8));
         visitors.add(new BarEntry(18,3));
@@ -72,8 +75,8 @@ public class Graph extends AppCompatActivity {
         visitors.add(new BarEntry(35,5));
         visitors.add(new BarEntry(36,8));
 
-
-        BarDataSet barDataSet = new BarDataSet(visitors, "");
+        //막대 그래프 색상, 애니메이트 세팅
+        BarDataSet barDataSet = new BarDataSet(visitors, "자세 지속시간");
         barChart.animateY(5000);
         barDataSet.setColors(ColorTemplate.rgb("#091772"),ColorTemplate.rgb("#AF2525"));
         barDataSet.setValueTextColor(ColorTemplate.rgb("#104D9E"));
@@ -85,7 +88,21 @@ public class Graph extends AppCompatActivity {
         barChart.setDrawGridBackground(false);
         barChart.setData(barData);
         barChart.getAxisRight().setDrawGridLines(true);
-        barChart.getAxisLeft().setLabelCount(6);
+        barChart.getAxisLeft().setLabelCount(7);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x축 하단에 표시
+        xAxis.setTextColor(ColorTemplate.rgb("#093A7A")); //X축 레이블 색상
+        xAxis.enableGridDashedLine(0, 24, 0); //그리드 라인 설정
+
+        YAxis yLAxis = barChart.getAxisLeft();
+        yLAxis.setTextColor(ColorTemplate.rgb("#093A7A")); //Y축 레이블 색상
+
+        //오른쪽 y축 레이블 삭제
+        YAxis yRAxis = barChart.getAxisRight();
+        yRAxis.setDrawLabels(false);
+        yRAxis.setDrawAxisLine(false);
+        yRAxis.setDrawGridLines(false);
 
         //자세히보기 버튼
         btn1 = (Button) findViewById(R.id.graph_detail);
@@ -132,7 +149,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_first = Calendar.getInstance();
         calendar_first.add(Calendar.DAY_OF_MONTH,-6);
         Date date_first = calendar_first.getTime();
-        SimpleDateFormat format_first = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_first = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_first_str = format_first.format(date_first);
         first.setText(date_first_str);
 
@@ -141,7 +158,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_second = Calendar.getInstance();
         calendar_second.add(Calendar.DAY_OF_MONTH,-5);
         Date date_second = calendar_second.getTime();
-        SimpleDateFormat format_second = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_second = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_second_str = format_second.format(date_second);
         second.setText(date_second_str);
 
@@ -150,7 +167,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_third = Calendar.getInstance();
         calendar_third.add(Calendar.DAY_OF_MONTH,-4);
         Date date_third = calendar_third.getTime();
-        SimpleDateFormat format_third = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_third = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_third_str = format_third.format(date_third);
         third.setText(date_third_str);
 
@@ -159,7 +176,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_fourth = Calendar.getInstance();
         calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
         Date date_fourth = calendar_fourth.getTime();
-        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_fourth_str = format_fourth.format(date_fourth);
         fourth.setText(date_fourth_str);
 
@@ -168,7 +185,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_fifth = Calendar.getInstance();
         calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
         Date date_fifth = calendar_fifth.getTime();
-        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_fifth_str = format_fifth.format(date_fifth);
         fifth.setText(date_fifth_str);
 
@@ -177,7 +194,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_sixth = Calendar.getInstance();
         calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
         Date date_sixth = calendar_sixth.getTime();
-        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_sixth_str = format_sixth.format(date_sixth);
         sixth.setText(date_sixth_str);
 
@@ -185,7 +202,7 @@ public class Graph extends AppCompatActivity {
         seventh = (TextView)findViewById(R.id.graph_seventh_date);
         long now_seventh = System.currentTimeMillis();
         Date day_seventh = new Date(now_seventh);
-        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String day_seventh_str = format_seventh.format(day_seventh);
         seventh.setText(day_seventh_str);
 
