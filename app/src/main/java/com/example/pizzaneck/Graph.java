@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -26,12 +30,17 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.Iterator;
 
 public class Graph extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
+    TextView today, week, first, second, third, fourth, fifth, sixth, seventh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,29 +73,6 @@ public class Graph extends AppCompatActivity {
         visitors.add(new BarEntry(36,8));
 
 
-        ArrayList date = new ArrayList();
-        date.add("mar,02");
-        date.add("");
-
-        date.add("mar,03");
-        date.add("");
-
-        date.add("mar,04");
-        date.add("");
-
-        date.add("mar,05");
-        date.add("");
-
-        date.add("mar,06");
-        date.add("");
-
-        date.add("mar,07");
-        date.add("");
-
-        date.add("mar,08");
-        date.add("");
-
-
         BarDataSet barDataSet = new BarDataSet(visitors, "");
         barChart.animateY(5000);
         barDataSet.setColors(ColorTemplate.rgb("#091772"),ColorTemplate.rgb("#AF2525"));
@@ -101,12 +87,128 @@ public class Graph extends AppCompatActivity {
         barChart.getAxisRight().setDrawGridLines(true);
         barChart.getAxisLeft().setLabelCount(6);
 
+        //자세히보기 버튼
+        btn1 = (Button) findViewById(R.id.graph_detail);
 
+        flag = true;
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == true){
+                    btn1.setText("요약하기 ▲");
+                    changeView ( 0 );
+                    flag = false;
+
+                }
+                else {
+                    btn1.setText("자세히보기 ▼");
+                    changeView ( 1 );
+                    flag = true;
+                }
+            }
+        });
+
+        //일주일 전 날짜 - 오늘 날짜 0000.00.00 - 0000.00.00
+        //일주일 전 날짜
+        week = (TextView)findViewById(R.id.graph_week);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,-6);
+        Date date = calendar.getTime();
+        SimpleDateFormat format01 = new SimpleDateFormat("yyyy.MM.dd");
+        String date_str = format01.format(date);
+        week.setText(date_str);
+
+        //오늘 날짜
+        today = (TextView)findViewById(R.id.graph_today);
+        long now = System.currentTimeMillis();
+        Date day = new Date(now);
+        SimpleDateFormat format02 = new SimpleDateFormat("yyyy.MM.dd");
+        String day_str = format02.format(day);
+        today.setText(day_str);
+
+        //자세히보기 내용 중 날짜(일주일 전부터 오늘 날짜까지)
+        //D-7
+        first = (TextView)findViewById(R.id.graph_first_date);
+        Calendar calendar_first = Calendar.getInstance();
+        calendar_first.add(Calendar.DAY_OF_MONTH,-6);
+        Date date_first = calendar_first.getTime();
+        SimpleDateFormat format_first = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_first_str = format_first.format(date_first);
+        first.setText(date_first_str);
+
+        //D-6
+        second = (TextView)findViewById(R.id.graph_second_date);
+        Calendar calendar_second = Calendar.getInstance();
+        calendar_second.add(Calendar.DAY_OF_MONTH,-5);
+        Date date_second = calendar_second.getTime();
+        SimpleDateFormat format_second = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_second_str = format_second.format(date_second);
+        second.setText(date_second_str);
+
+        //D-5
+        third = (TextView)findViewById(R.id.graph_third_date);
+        Calendar calendar_third = Calendar.getInstance();
+        calendar_third.add(Calendar.DAY_OF_MONTH,-4);
+        Date date_third = calendar_third.getTime();
+        SimpleDateFormat format_third = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_third_str = format_third.format(date_third);
+        third.setText(date_third_str);
+
+        //D-4
+        fourth = (TextView)findViewById(R.id.graph_fourth_date);
+        Calendar calendar_fourth = Calendar.getInstance();
+        calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
+        Date date_fourth = calendar_fourth.getTime();
+        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_fourth_str = format_fourth.format(date_fourth);
+        fourth.setText(date_fourth_str);
+
+        //D-3
+        fifth = (TextView)findViewById(R.id.graph_fifth_date);
+        Calendar calendar_fifth = Calendar.getInstance();
+        calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
+        Date date_fifth = calendar_fifth.getTime();
+        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_fifth_str = format_fifth.format(date_fifth);
+        fifth.setText(date_fifth_str);
+
+        //D-2
+        sixth = (TextView)findViewById(R.id.graph_sixth_date);
+        Calendar calendar_sixth = Calendar.getInstance();
+        calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
+        Date date_sixth = calendar_sixth.getTime();
+        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String date_sixth_str = format_sixth.format(date_sixth);
+        sixth.setText(date_sixth_str);
+
+        //D-DAY
+        seventh = (TextView)findViewById(R.id.graph_seventh_date);
+        long now_seventh = System.currentTimeMillis();
+        Date day_seventh = new Date(now_seventh);
+        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy.MM.dd (EE)");
+        String day_seventh_str = format_seventh.format(day_seventh);
+        seventh.setText(day_seventh_str);
 
     }
 
+    public Button btn1;
+    public boolean flag;
+
+    //자세히보기 버튼 클릭시 이벤트 처리
+    private void changeView(int index){
+        TableLayout tableLayout = findViewById(R.id.graph_table);
+        switch (index) {
+            case 0:
+                tableLayout.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                tableLayout.setVisibility(View.GONE);
+                break;
+        }
+    }
+
     /* 툴바 및 툴바기능 설정 함수.
-     * onCreate에서 호출
+     * onCreate 에서 호출
      * 클래스 내 DrawerLayout drawerLayout; NavigationView navView; Toolbar toolbar; 선언 필요
      */
     protected void setToolbar(){

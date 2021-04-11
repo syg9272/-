@@ -5,271 +5,720 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true">
 
-    <!--툴바-->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:padding="20dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/jalnan"
-            android:text="날짜 별 자세 추이"
-            android:textColor="#0B3B79"
-            android:textSize="20sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <!--날짜 변동가능하게 바꾸어야 함-->
-    <TextView
-        android:id="@+id/textView_today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:text="2021.03.02 - 2021.03.08"
-        android:fontFamily="@font/typo_ssangmundong"
-        android:textStyle="bold"
-        android:textSize="15sp"/>
-
-    <!--그래프 범례-->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:paddingHorizontal="130dp"
-        android:src="@drawable/graph_color" />
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/graph_total"
-        android:layout_width="340dp"
-        android:layout_height="190dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"/>
-
-    <!--그래프 임시 이미지로
-    <ImageView
-        android:layout_width="330dp"
-        android:layout_height="190dp"
-        android:src="@drawable/graph_7days"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"/>-->
-
-    <!--하단 결과문장-->
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!--툴바-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/jalnan"
-            android:text="이번 주 당신의 자세는"
-            android:textColor="#777777"
-            android:textSize="15sp" />
+            android:padding="20dp"
+            android:background="#FFFFFF"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="날짜 별 자세 추이"
+                android:textColor="#0B3B79"
+                android:fontFamily="@font/jalnan"
+                android:textSize="20sp"/>
 
-        <TextView
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--날짜-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/graph_week"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:text="0000.00.00"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:text=" - "
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/graph_today"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:text="0000.00.00"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+
+        <!--그래프 범례-->
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/jalnan"
-            android:text="GOOD"
-            android:textColor="#277E12"
-            android:textSize="15sp" />
+            android:layout_height="20dp"
+            android:paddingHorizontal="130dp"
+            android:src="@drawable/graph_color" />
+
+        <!--그래프 툴-->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graph_total"
+            android:layout_width="340dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"/>
+
+        <!--하단 결과문장-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--이번 주 당신의 자세는-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="이번 주 당신의 자세는"
+                        android:textColor="#777777"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/graph_evaluation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="GOOD"
+                        android:textColor="#277E12"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!--밑줄-->
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#777777"></LinearLayout>
+
+                <!--총 알림 횟수는-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="총 알림 횟수는"
+                        android:textColor="#777777"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/graph_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="21회"
+                        android:textColor="#E78515"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!--밑줄-->
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#777777"></LinearLayout>
+
+                <!--나쁜 자세 지속시간은-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="나쁜 자세 지속시간은"
+                        android:textColor="#777777"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/graph_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/jalnan"
+                        android:text="자세히보기 ▼"
+                        android:textColor="#070E64"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!--자세히보기 버튼 클릭 시 결과화면-->
+                <TableLayout
+                    android:id="@+id/graph_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@android:color/transparent"
+                    android:stretchColumns="0, 1"
+                    android:visibility="gone">
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_first_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="50 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_second_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="60 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_third_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="1 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="min "
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="30 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_fourth_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="3 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="min "
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="12 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_fifth_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="2 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="min "
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="03 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_sixth_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="57 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="312dp"
+                        android:layout_height="1dp">
+
+                        <LinearLayout
+                            android:layout_width="280dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/transparent">
+
+                            <TextView
+                                android:id="@+id/graph_seventh_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="0000.00.00"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="20dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="23 "
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/jalnan"
+                                android:text="sec"
+                                android:textColor="#070E64"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+
+                <!--밑줄-->
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#777777"></LinearLayout>
+
+                <!--나쁜 자세 비율은-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="나쁜 자세 비율은"
+                        android:textColor="#777777"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="40%"
+                        android:textColor="#7D4799"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!--밑줄-->
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#777777"></LinearLayout>
+
+                <!--저번 주에 비해-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:text="저번 주에 비해"
+                        android:textColor="#777777"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/graph_face"
+                        android:layout_width="99dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/jalnan"
+                        android:src="@drawable/graph_nodata" />
+                </LinearLayout>
+
+                <!--밑줄-->
+                <LinearLayout
+                    android:layout_width="312dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#777777"></LinearLayout>
+
+                <!--표정-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingHorizontal="50dp"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_expression"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#777777"
-        android:paddingHorizontal="50dp"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="총 알림 횟수는"
-            android:textColor="#777777"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="21회"
-            android:textColor="#E78515"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#777777"
-        android:paddingHorizontal="50dp"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="나쁜 자세 비율은"
-            android:textColor="#777777"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="40 %"
-            android:textColor="#070E64"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#777777"
-        android:paddingHorizontal="50dp"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="추천 스트레칭은"
-            android:textColor="#777777"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="5번 스트레칭"
-            android:textColor="#7D4799"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#777777"
-        android:paddingHorizontal="50dp"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="저번 주에 비해"
-            android:textColor="#777777"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/jalnan"
-            android:text="노력이 필요합니다"
-            android:textColor="#9F0E0E"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#777777"
-        android:paddingHorizontal="50dp"></LinearLayout>
-
-</LinearLayout>
+    <!--메뉴버튼 클릭 시-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
