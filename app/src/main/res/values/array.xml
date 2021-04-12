@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "sound">
+        <item>알림음1</item>
+        <item>알림음2</item>
+        <item>알림음3</item>
+        <item>알림음4</item>
+        <item>알림음5</item>
+    </string-array>
+</resources>
