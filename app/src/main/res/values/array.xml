@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name = "sound">
-        <item>진동</item>
         <item>알림음1</item>
         <item>알림음2</item>
         <item>알림음3</item>

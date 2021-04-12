@@ -1,15 +1,15 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@android:color/darker_gray</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorPrimary">@color/Primary</item>
+        <item name="colorPrimaryDark">@color/PrimaryVariant</item>
+        <item name="colorAccent">@color/Secondary</item>
     </style>
 
     <!--스플래시 스크린 액티비티용 테마-->
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:background">@drawable/ic_loding</item>
     </style>
+
 </resources>

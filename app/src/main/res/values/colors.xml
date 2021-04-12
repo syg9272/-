@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="your_color">#00008b</color>
@@ -12,5 +11,17 @@
     <color name="color_day">#808080</color>
     <color name="RED">#ff0000</color>
     <color name="BLUE">#005FFF</color>
+    <color name="Primary">#6200EE</color>
+    <color name="PrimaryVariant">#3700B3</color>
+    <color name="Secondary">#03DAC6</color>
+    <color name="SecondaryVariant">#018786</color>
+    <color name="Background">#FFFFFF</color>
+    <color name="Surface">#FFFFFF</color>
+    <color name="Error">#B00020</color>
+    <color name="OnPrimary">#FFFFFF</color>
+    <color name="OnSecondary">#000000</color>
+    <color name="OnBackground">#000000</color>
+    <color name="OnSurface">#000000</color>
+    <color name="OnError">#FFFFFF</color>
 
 </resources>

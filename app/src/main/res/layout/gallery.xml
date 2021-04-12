@@ -7,363 +7,362 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     >
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:background="#FFFFFF"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="갤러리에서 불러오기"
-            android:textColor="#0B3B79"
-            android:fontFamily="@font/jalnan"
-            android:textSize="20sp"/>
+            android:padding="20dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    </androidx.appcompat.widget.Toolbar>
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="갤러리에서 불러오기"
+                android:textColor="#0B3B79"
+                android:fontFamily="@font/jalnan"
+                android:textSize="20sp"/>
 
-        <TableRow
+        </androidx.appcompat.widget.Toolbar>
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/album1"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="최근 항목"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Today"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
+                android:layout_height="match_parent" >
 
-            <LinearLayout
-                android:id="@+id/album2"
+                <LinearLayout
+                    android:id="@+id/album1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="최근 항목"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Today"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/album2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="즐겨찾는 항목"
+                        android:gravity="center_horizontal"
+                        android:textSize="16dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Yesterday"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/album3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
+                    android:paddingHorizontal="15dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="스크린 샷"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2 days ago"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
+                android:layout_height="match_parent" >
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/album4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="즐겨찾는 항목"
-                    android:gravity="center_horizontal"
-                    android:textSize="16dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Yesterday"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="움직이는 항목"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4 days ago"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/album3"
+                <LinearLayout
+                    android:id="@+id/album5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="셀카"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5 days ago"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/album6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="비디오"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5 days ago"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp"
-                android:paddingHorizontal="15dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="스크린 샷"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2 days ago"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
-        </TableRow>
+                android:layout_height="match_parent" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <LinearLayout
+                    android:id="@+id/album7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="최근 항목"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Today"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/album4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp">
-                <ImageView
+                <LinearLayout
+                    android:id="@+id/album8"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="움직이는 항목"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="4 days ago"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="즐겨찾는 항목"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Yesterday"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"/>
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/album5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <ImageView
+                <LinearLayout
+                    android:id="@+id/album9"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="셀카"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5 days ago"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/album6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="비디오"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5 days ago"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <LinearLayout
-                android:id="@+id/album7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="최근 항목"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Today"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/album8"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="즐겨찾는 항목"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Yesterday"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/album9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album2"
-                    android:layout_marginBottom="2dp"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:src="@drawable/album" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="스크린 샷"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2 days ago"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:textSize="12dp"
-                    />
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album2"
+                        android:layout_marginBottom="2dp"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:src="@drawable/album" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="스크린 샷"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2 days ago"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:textSize="12dp"
+                        />
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
