@@ -29,11 +29,11 @@ import java.io.InputStream;
 
 public class Gallery extends AppCompatActivity {
 
-    LinearLayout album1_btn, album2_btn, album3_btn, album4_btn, album5_btn, album6_btn, album7_btn, album8_btn, album9_btn;
-
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
+
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,87 +41,42 @@ public class Gallery extends AppCompatActivity {
         setContentView(R.layout.gallery);
         setToolbar();
 
-        album1_btn = (LinearLayout)findViewById(R.id.album1);
-        album2_btn = (LinearLayout)findViewById(R.id.album2);
-        album3_btn = (LinearLayout)findViewById(R.id.album3);
-        album4_btn = (LinearLayout)findViewById(R.id.album4);
-        album5_btn = (LinearLayout)findViewById(R.id.album5);
-        album6_btn = (LinearLayout)findViewById(R.id.album6);
-        album7_btn = (LinearLayout)findViewById(R.id.album7);
-        album8_btn = (LinearLayout)findViewById(R.id.album8);
-        album9_btn = (LinearLayout)findViewById(R.id.album9);
+        imageView = findViewById(R.id.photoImage);
+        Button button = findViewById(R.id.photo);
 
-        album1_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
+                openGallery();
             }
         });
+    }
 
-        album2_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
+    //앨범에서 사진을 선택할 수 있는 화면 띄우기
+    public void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        album3_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
+        startActivityForResult(intent, 101);
+    }
 
-        album4_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
+    //사진 값 전달 받기
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                Uri fileUri = data.getData();
+                ContentResolver resolver = getContentResolver();
+                try {
+                    InputStream instream = resolver.openInputStream(fileUri);
+                    Bitmap imgBitmap = BitmapFactory.decodeStream(instream);
+                    imageView.setImageBitmap(imgBitmap);
+                    instream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        });
-
-        album5_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
-
-        album6_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
-
-        album7_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
-
-        album8_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
-
-        album9_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Gallery.this, Photo.class);
-                startActivity(intent);
-            }
-        });
+        }
     }
 
     /* 툴바 및 툴바기능 설정 함수.
@@ -168,7 +123,7 @@ public class Gallery extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(id == R.id.graph){
-                    Intent intent = new Intent(getApplicationContext(), Gallery.class);
+                    Intent intent = new Intent(getApplicationContext(), Graph.class);
                     startActivity(intent);
                 }
 

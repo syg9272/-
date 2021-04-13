@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     >
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         tools:context=".MainActivity">
+
+        <!--툴바-->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -28,341 +32,161 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="갤러리에서 불러오기"
-                android:textColor="#0B3B79"
+                android:textColor="@color/main_color"
                 android:fontFamily="@font/jalnan"
                 android:textSize="20sp"/>
 
         </androidx.appcompat.widget.Toolbar>
-        <TableLayout
+
+        <ImageView
+            android:id="@+id/photoImage"
+            android:layout_width="344dp"
+            android:layout_height="344dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="3dp"
+            android:layout_marginVertical="3dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/ic_photo" />
+
+        <Button
+            android:id="@+id/photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="갤러리 바로가기"
+            android:fontFamily="@font/jalnan"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="10dp"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="FHP 각도"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:fontFamily="@font/jalnan"
+                android:textSize="12sp"
+                android:background="@drawable/ic_round_edge"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="FHP 단계"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:fontFamily="@font/jalnan"
+                android:textSize="12sp"
+                android:backgroundTint="#245B70"
+                android:background="@drawable/ic_round_edge"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="목 자세"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:fontFamily="@font/jalnan"
+                android:textSize="12sp"
+                android:backgroundTint="#175347"
+                android:background="@drawable/ic_round_edge"
+                />
+        </LinearLayout>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="10dp">
 
-                <LinearLayout
-                    android:id="@+id/album1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    >
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="최근 항목"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Today"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:background="@drawable/ic_round_edge">
+                <TextView
+                    android:layout_width="94dp"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/ic_round_edge"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/jalnan"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:text="49.5˚"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/album2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp"
-                    >
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="즐겨찾는 항목"
-                        android:gravity="center_horizontal"
-                        android:textSize="16dp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Yesterday"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:background="@drawable/ic_round_edge"
+                android:backgroundTint="#245B70"
+                >
+                <TextView
+                    android:layout_width="94dp"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/ic_round_edge"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/jalnan"
+                    android:gravity="center"
+                    android:textColor="#245B70"
+                    android:text="4단계"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/album3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp"
-                    android:paddingHorizontal="15dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="스크린 샷"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2 days ago"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-            </TableRow>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"/>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <LinearLayout
-                    android:id="@+id/album4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="움직이는 항목"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4 days ago"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/album5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="셀카"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="5 days ago"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/album6"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="비디오"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="5 days ago"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <LinearLayout
-                    android:id="@+id/album7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="최근 항목"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Today"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/album8"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="즐겨찾는 항목"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Yesterday"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/album9"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album2"
-                        android:layout_marginBottom="2dp"/>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:src="@drawable/album" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="스크린 샷"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:textSize="16dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2 days ago"
-                        android:gravity="center_horizontal"
-                        android:layout_margin="5dp"
-                        android:textSize="12dp"
-                        />
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:background="@drawable/ic_round_edge"
+                android:backgroundTint="#175347">
+                <TextView
+                    android:layout_width="94dp"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/ic_round_edge"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/jalnan"
+                    android:gravity="center"
+                    android:textColor="#175347"
+                    android:text="심각한 손상"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
+    <!--메뉴버튼 클릭 시-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

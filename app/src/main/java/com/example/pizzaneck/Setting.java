@@ -129,7 +129,7 @@ public class Setting extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(id == R.id.graph){
-                    Intent intent = new Intent(getApplicationContext(), Gallery.class);
+                    Intent intent = new Intent(getApplicationContext(), Graph.class);
                     startActivity(intent);
                 }
 
