@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="5dp"
+    android:height="6dp"
+    android:viewportWidth="5"
+    android:viewportHeight="6">
+  <path
+      android:pathData="M2.5,0L2.5,0A2.5,2.5 0,0 1,5 2.5L5,3.5A2.5,2.5 0,0 1,2.5 6L2.5,6A2.5,2.5 0,0 1,0 3.5L0,2.5A2.5,2.5 0,0 1,2.5 0z"
+      android:fillColor="@color/graph_legend_bad" />
+</vector>

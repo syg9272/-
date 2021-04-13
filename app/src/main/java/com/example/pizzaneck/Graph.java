@@ -19,6 +19,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.navigation.NavigationView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -30,6 +33,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,9 +80,14 @@ public class Graph extends AppCompatActivity {
         visitors.add(new BarEntry(36,8));
 
 
-        //막대 그래프 색상, 애니메이트 세팅
+        //그래프 세팅
         BarDataSet barDataSet = new BarDataSet(visitors, "자세 지속시간");
-        barChart.animateY(5000);
+
+        Legend legend = barChart.getLegend(); //범례 설정
+        legend.setEnabled(false); //범례 비활성화
+        barChart.animateY(5000); //화면 시작 시 애니메이트 설정
+
+        //그래프 바 색상, 값 텍스트 설정
         barDataSet.setColors(getResources().getColor(R.color.graph_good),getResources().getColor(R.color.graph_bad));
         barDataSet.setValueTextColor(getResources().getColor(R.color.graph_value));
         barDataSet.setValueTextSize(0f);
@@ -87,15 +96,17 @@ public class Graph extends AppCompatActivity {
         barChart.getDescription().setEnabled(false); //차트 설명 비활성화
         barChart.setFitBars(true); //차트 비율 활성화
         barChart.setData(barData);
-        barChart.getAxisRight().setDrawGridLines(true);
         barChart.getAxisLeft().setLabelCount(7, true);
 
         //X축 속성
         XAxis xAxis = barChart.getXAxis();
+        xAxis.setCenterAxisLabels(true); //x축 레이블이 그룹 중앙에 오도록 설정
+        xAxis.setTextSize(12);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x축 하단에 표시
         xAxis.setTextColor(getResources().getColor(R.color.main_color)); //X축 레이블 색상
         xAxis.enableGridDashedLine(0, 24, 0); //그리드 라인 설정
-        xAxis.setLabelCount(-2);
+        xAxis.setEnabled(false); //x축 값 비활성화
+
 
         //Y축 속성
         YAxis yLAxis = barChart.getAxisLeft();

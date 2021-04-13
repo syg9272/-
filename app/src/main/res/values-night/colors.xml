@@ -21,7 +21,10 @@
     <color name="graph_text">#FFFFFF</color>
     <color name="graph_data">#3d87c4</color>
     <color name="graph_good">#5E9AFF</color>
+    <color name= "graph_legend_good">#5E9AFF</color>
     <color name="graph_bad">#FF6D6D</color>
+    <color name= "graph_legend_bad">#FF6D6D</color>
     <color name="graph_value">#FFFFFF</color>
     <color name="edge">#FFFFFF</color>
+
 </resources>
