@@ -33,5 +33,6 @@
     <color name="graph_good">#091772</color>
     <color name="graph_bad">#AF2525</color>
     <color name="graph_value">#104D9E</color>
+    <color name="edge">#2D3974</color>
 
 </resources>

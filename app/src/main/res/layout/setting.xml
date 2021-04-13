@@ -36,7 +36,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -121,7 +121,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -136,24 +137,35 @@
                 android:textColor="@color/main_color"
                 android:textSize="24sp" />
 
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/spinner_background"
-                android:entries="@array/sound"
-                android:spinnerMode="dropdown" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/alarm"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/OnPrimary"
+                android:background="@drawable/edge_2"
+                android:fontFamily="@font/jalnan"
+                android:text="알림 소리"
+                android:textSize="18sp" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="318dp"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/jalnan"
             android:text="테마 색상 설정"
             android:textSize="24sp"

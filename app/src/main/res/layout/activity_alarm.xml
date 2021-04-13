@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="알림 소리"
+                android:textColor="@color/main_color"
+                android:fontFamily="@font/jalnan"
+                android:textSize="20sp"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/sound1"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Alien" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound2"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Beep Once" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound3"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Chaos" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound4"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Luna" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound5"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Milky Way" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound6"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Orion" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound7"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Prism" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound8"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Signal" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layerType="software"
+                android:src="@drawable/dotted" />
+
+            <RadioButton
+                android:id="@+id/sound9"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:textColor="@color/main_color"
+                android:text="   Voyager" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navi_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -23,4 +23,5 @@
     <color name="graph_good">#5E9AFF</color>
     <color name="graph_bad">#FF6D6D</color>
     <color name="graph_value">#FFFFFF</color>
+    <color name="edge">#FFFFFF</color>
 </resources>
