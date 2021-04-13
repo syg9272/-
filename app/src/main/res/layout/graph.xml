@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="날짜 별 자세 추이"
-                android:textColor="#0B3B79"
+                android:textColor="@color/main_color"
                 android:fontFamily="@font/jalnan"
                 android:textSize="20sp"/>
 
@@ -113,7 +113,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/jalnan"
                         android:text="이번 주 당신의 자세는"
-                        android:textColor="#777777"
+                        android:textColor="@color/graph_text"
                         android:textSize="15sp" />
 
                     <View
@@ -139,7 +139,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#777777"></LinearLayout>
+                    android:background="@color/graph_text"></LinearLayout>
 
                 <!--총 알림 횟수는-->
                 <LinearLayout
@@ -155,7 +155,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
                         android:text="총 알림 횟수는"
-                        android:textColor="#777777"
+                        android:textColor="@color/graph_text"
                         android:textSize="15sp" />
 
                     <View
@@ -181,7 +181,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#777777"></LinearLayout>
+                    android:background="@color/graph_text"></LinearLayout>
 
                 <!--나쁜 자세 지속시간은-->
                 <LinearLayout
@@ -197,7 +197,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
                         android:text="나쁜 자세 지속시간은"
-                        android:textColor="#777777"
+                        android:textColor="@color/graph_text"
                         android:textSize="15sp" />
 
                     <View
@@ -213,7 +213,7 @@
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/jalnan"
                         android:text="자세히보기 ▼"
-                        android:textColor="#070E64"
+                        android:textColor="@color/graph_data"
                         android:textSize="15sp" />
                 </LinearLayout>
 
@@ -247,7 +247,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -261,7 +261,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="50 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -270,7 +270,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -292,7 +292,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -306,7 +306,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="60 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -315,7 +315,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -337,7 +337,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -351,7 +351,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="1 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -360,7 +360,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="min "
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
 
 
@@ -370,7 +370,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="30 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -379,7 +379,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -401,7 +401,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -415,7 +415,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="3 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -424,7 +424,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="min "
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -433,7 +433,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="12 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -442,7 +442,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -464,7 +464,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -478,7 +478,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="2 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -487,7 +487,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="min "
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -496,7 +496,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="03 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -505,7 +505,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -527,7 +527,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -541,7 +541,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="57 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -550,7 +550,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -573,7 +573,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="0000.00.00"
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <View
@@ -587,7 +587,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="23 "
-                                android:textColor="#777777"
+                                android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -596,7 +596,7 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="sec"
-                                android:textColor="#070E64"
+                                android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
@@ -609,7 +609,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#777777"></LinearLayout>
+                    android:background="@color/graph_text"></LinearLayout>
 
                 <!--나쁜 자세 비율은-->
                 <LinearLayout
@@ -625,7 +625,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
                         android:text="나쁜 자세 비율은"
-                        android:textColor="#777777"
+                        android:textColor="@color/graph_text"
                         android:textSize="15sp" />
 
                     <View
@@ -651,7 +651,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#777777"></LinearLayout>
+                    android:background="@color/graph_text"></LinearLayout>
 
                 <!--저번 주에 비해-->
                 <LinearLayout
@@ -667,7 +667,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
                         android:text="저번 주에 비해"
-                        android:textColor="#777777"
+                        android:textColor="@color/graph_text"
                         android:textSize="15sp" />
 
                     <View
@@ -691,7 +691,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#777777"></LinearLayout>
+                    android:background="@color/graph_text"></LinearLayout>
 
                 <!--표정-->
                 <LinearLayout

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="메뉴명"
-            android:textColor="#0B3B79"
+            android:textColor="@color/main_color"
             android:fontFamily="@font/jalnan"
             android:textSize="20sp"/>
 

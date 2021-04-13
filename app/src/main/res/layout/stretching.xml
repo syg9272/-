@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="스트레칭 정보"
-                    android:textColor="#0B3B79"
+                    android:textColor="@color/main_color"
                     android:fontFamily="@font/jalnan"
                     android:textSize="20sp"/>
 
@@ -76,7 +76,6 @@
                 <TextView
                     android:layout_width="243dp"
                     android:layout_height="112dp"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:gravity="center_vertical"
@@ -111,7 +110,6 @@
                     android:layout_width="243dp"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:text="2. 팔꿈치를 모으고 손목을 굽히지 않은 채  엄지손가락으로 관자놀이를 누른다." />
@@ -144,7 +142,6 @@
                     android:layout_width="243dp"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:text="3. 두 손을 깍지 끼고 상체를 숙이지 않은 채 등 뒤로 팔을 올린다." />
@@ -177,7 +174,6 @@
                     android:layout_width="243dp"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:text="4. 두 손을 포개어 이마에 올린 뒤 이마를 앞으로 내민다." />
@@ -211,7 +207,6 @@
                     android:layout_width="243dp"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:text="5. 두 손을 뒷머리에 올린 뒤 뒷머리를 뒤로 민다." />
@@ -245,7 +240,6 @@
                     android:layout_width="243dp"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
-                    android:background="#FFFFFF"
                     android:textColor="@color/stretching_font"
                     android:fontFamily="@font/malgunbd"
                     android:text="6. 한쪽 팔을 반대편 옆머리에 올린 뒤 반대편으로 머리를 당긴다." />
@@ -272,9 +266,9 @@
                     android:id="@+id/stretching_btn"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:background="#093A7A"
+                    android:background="@color/main_color"
                     android:text="캘린더에 체크하러가기"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/Background"/>
             </LinearLayout>
 
         </LinearLayout>

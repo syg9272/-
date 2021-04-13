@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="피자, NECK!"
-            android:textColor="#093A7A"
+            android:textColor="@color/main_color"
             android:fontFamily="@font/jalnan"
             android:textSize="30sp"/>
         <ImageButton
@@ -65,7 +65,7 @@
             android:text="EXCELLENT"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:textColor="#225C8C"/>
+            android:textColor="@color/ic_home"/>
         <TextView
             android:id="@+id/textView_pointIs"
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2시간 28분"
-                android:textColor="@android:color/black"
+                android:textColor="@color/color_000000"
                 android:textSize="15sp"/>
         </LinearLayout>
         <View
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3회"
-                android:textColor="@android:color/black"
+                android:textColor="@color/color_000000"
                 android:textSize="15sp"/>
         </LinearLayout>
     </LinearLayout>
@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="실시간 감지"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color_000000"
                     android:textSize="15sp"
                     android:clickable="false"/>
             </LinearLayout>
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="갤러리에서 불러오기"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color_000000"
                     android:textSize="15sp"
                     android:clickable="false"/>
             </LinearLayout>
@@ -212,14 +212,15 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_search"
                     android:clickable="false"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:clickable="false"
                     android:text="스트레칭 정보"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:clickable="false"/>
+                    android:textColor="@color/color_000000"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -241,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="날짜별 자세 추이"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color_000000"
                     android:textSize="15sp"
                     android:clickable="false"/>
             </LinearLayout>

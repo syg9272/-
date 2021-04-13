@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="설정"
+                android:textColor="@color/main_color"
                 android:fontFamily="@font/jalnan"
                 android:textSize="20sp"/>
 
@@ -47,6 +48,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jalnan"
                 android:text="알림 설정"
+                android:textColor="@color/main_color"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -60,19 +62,19 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="140px"
-                android:src="@drawable/volume"/>
+                android:src="@drawable/ic_volume"/>
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="220px"
-                android:src="@drawable/vibrate" />
+                android:src="@drawable/ic_vibrate" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="210px"
-                android:src="@drawable/mute" />
+                android:src="@drawable/ic_mute" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,7 +95,8 @@
                     android:layout_height="63dp"
                     android:layout_marginLeft="40dp"
                     android:fontFamily="@font/typo_ssangmundong"
-                    android:text="소리" />
+                    android:text="소리"
+                    android:textColor="@color/main_color"/>
 
                 <RadioButton
                     android:id="@+id/button2"
@@ -101,7 +104,8 @@
                     android:layout_height="63dp"
                     android:layout_marginLeft="70dp"
                     android:fontFamily="@font/typo_ssangmundong"
-                    android:text="진동" />
+                    android:text="진동"
+                    android:textColor="@color/main_color"/>
 
                 <RadioButton
                     android:id="@+id/button3"
@@ -109,7 +113,8 @@
                     android:layout_height="63dp"
                     android:layout_marginLeft="70dp"
                     android:fontFamily="@font/typo_ssangmundong"
-                    android:text="무음"/>
+                    android:text="무음"
+                    android:textColor="@color/main_color"/>
             </RadioGroup>
 
         </LinearLayout>
@@ -128,6 +133,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jalnan"
                 android:text="알림음 설정"
+                android:textColor="@color/main_color"
                 android:textSize="24sp" />
 
             <Spinner
@@ -150,7 +156,8 @@
             android:layout_marginLeft="30dp"
             android:fontFamily="@font/jalnan"
             android:text="테마 색상 설정"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/main_color"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,7 +178,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="63dp"
                     android:fontFamily="@font/typo_ssangmundong"
-                    android:text="Light"/>
+                    android:text="Light"
+                    android:textColor="@color/main_color"/>
 
                 <RadioButton
                     android:id="@+id/idRBDark"
@@ -179,7 +187,8 @@
                     android:layout_height="63dp"
                     android:layout_marginLeft="150px"
                     android:fontFamily="@font/typo_ssangmundong"
-                    android:text="Dark" />
+                    android:text="Dark"
+                    android:textColor="@color/main_color"/>
 
             </RadioGroup>
         </LinearLayout>

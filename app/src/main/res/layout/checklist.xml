@@ -48,7 +48,7 @@
                 android:fontFamily="@font/typo_ssangmundong"
                 android:gravity="center"
                 android:paddingLeft="10dp"
-                android:textColor="@color/color_ffffff"
+                android:textColor="#ffffff"
                 android:textSize="18sp" />
 
             <GridView

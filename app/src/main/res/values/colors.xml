@@ -4,10 +4,15 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="your_color">#00008b</color>
     <color name="main_color">#093A7A</color>
+    <color name="main">#093A7A</color>
+    <color name="ic_setting">#053b68</color>
+    <color name="ic_home">#225c8c</color>
+    <color name="ic_circle">#225C8C</color>
     <color name="mini_icon">#3D87C4</color>
     <color name="stretching_font">#585858</color>
     <color name="color_ffffff">#FFFFFF</color>
     <color name="color_000000">#000000</color>
+    <color name="_000000">#000000</color>
     <color name="color_day">#808080</color>
     <color name="RED">#ff0000</color>
     <color name="BLUE">#005FFF</color>
@@ -23,5 +28,10 @@
     <color name="OnBackground">#000000</color>
     <color name="OnSurface">#000000</color>
     <color name="OnError">#FFFFFF</color>
+    <color name="graph_text">#777777</color>
+    <color name="graph_data">#070E64</color>
+    <color name="graph_good">#091772</color>
+    <color name="graph_bad">#AF2525</color>
+    <color name="graph_value">#104D9E</color>
 
 </resources>

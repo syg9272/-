@@ -110,7 +110,7 @@ public class Checklist extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 check = (TextView) gridView.getChildAt(position).findViewById(R.id.tv_item_gridview);
-                check.setTextColor(getResources().getColor(R.color.color_000000));
+                check.setTextColor(getResources().getColor(R.color._000000));
                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
             }
         });
@@ -195,7 +195,7 @@ public class Checklist extends AppCompatActivity {
             String sToday = String.valueOf(today);
             if (sToday.equals(getItem(position))) { //오늘 day 텍스트 컬러 변경
                 holder.tvItemGridView.setPaintFlags(holder.tvItemGridView.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.main_color));
+                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.main));
 
             }
 

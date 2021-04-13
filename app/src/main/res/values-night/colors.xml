@@ -12,4 +12,15 @@
     <color name="OnBackground">#FFFFFF</color>
     <color name="OnSurface">#FFFFFF</color>
     <color name="OnError">#000000</color>
+    <color name="stretching_font">#FFFFFF</color>
+    <color name="color_000000">#FFFFFF</color>
+    <color name="main_color">#FFFFFF</color>
+    <color name="ic_setting">#FFFFFF</color>
+    <color name="ic_home">#ACD9FF</color>
+    <color name="ic_circle">#98D0FF</color>
+    <color name="graph_text">#FFFFFF</color>
+    <color name="graph_data">#3d87c4</color>
+    <color name="graph_good">#5E9AFF</color>
+    <color name="graph_bad">#FF6D6D</color>
+    <color name="graph_value">#FFFFFF</color>
 </resources>

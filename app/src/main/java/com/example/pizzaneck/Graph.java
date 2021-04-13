@@ -79,8 +79,8 @@ public class Graph extends AppCompatActivity {
         //막대 그래프 색상, 애니메이트 세팅
         BarDataSet barDataSet = new BarDataSet(visitors, "자세 지속시간");
         barChart.animateY(5000);
-        barDataSet.setColors(ColorTemplate.rgb("#091772"),ColorTemplate.rgb("#AF2525"));
-        barDataSet.setValueTextColor(ColorTemplate.rgb("#104D9E"));
+        barDataSet.setColors(getResources().getColor(R.color.graph_good),getResources().getColor(R.color.graph_bad));
+        barDataSet.setValueTextColor(getResources().getColor(R.color.graph_value));
         barDataSet.setValueTextSize(0f);
         BarData barData = new BarData(barDataSet);
 
@@ -93,14 +93,14 @@ public class Graph extends AppCompatActivity {
         //X축 속성
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x축 하단에 표시
-        xAxis.setTextColor(ColorTemplate.rgb("#093A7A")); //X축 레이블 색상
+        xAxis.setTextColor(getResources().getColor(R.color.main_color)); //X축 레이블 색상
         xAxis.enableGridDashedLine(0, 24, 0); //그리드 라인 설정
         xAxis.setLabelCount(-2);
 
         //Y축 속성
         YAxis yLAxis = barChart.getAxisLeft();
-        yLAxis.setTextColor(ColorTemplate.rgb("#093A7A")); //Y축 레이블 색상
-        yLAxis.setGridColor(ColorTemplate.rgb("#093A7A")); //Y축 그리드 색상
+        yLAxis.setTextColor(getResources().getColor(R.color.main_color)); //Y축 레이블 색상
+        yLAxis.setGridColor(getResources().getColor(R.color.main_color)); //Y축 그리드 색상
 
         //오른쪽 y축 레이블 삭제
         YAxis yRAxis = barChart.getAxisRight();
