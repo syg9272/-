@@ -202,6 +202,15 @@
                     android:text="Dark"
                     android:textColor="@color/main_color"/>
 
+                <RadioButton
+                    android:id="@+id/idRBDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:layout_marginLeft="150px"
+                    android:fontFamily="@font/typo_ssangmundong"
+                    android:text="Default"
+                    android:textColor="@color/main_color"/>
+
             </RadioGroup>
         </LinearLayout>
 
