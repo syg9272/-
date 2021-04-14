@@ -46,7 +46,7 @@ public class Setting extends AppCompatActivity {
         alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Alarm.class);
+                Intent intent = new Intent(getApplicationContext(),alarm.class);
                 startActivity(intent);
             }
         });
@@ -172,3 +172,4 @@ public class Setting extends AppCompatActivity {
 
 
 }
+

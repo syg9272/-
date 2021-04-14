@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="알림 소리"
-                android:textColor="@color/main_color"
                 android:fontFamily="@font/jalnan"
                 android:textSize="20sp"/>
 
@@ -46,7 +45,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Alien" />
 
             <ImageView
@@ -63,7 +61,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Beep Once" />
 
             <ImageView
@@ -80,7 +77,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Chaos" />
 
             <ImageView
@@ -97,7 +93,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Luna" />
 
             <ImageView
@@ -114,7 +109,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Milky Way" />
 
             <ImageView
@@ -131,7 +125,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Orion" />
 
             <ImageView
@@ -148,7 +141,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Prism" />
 
             <ImageView
@@ -165,7 +157,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Signal" />
 
             <ImageView
@@ -182,7 +173,6 @@
                 android:layout_height="63dp"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:textColor="@color/main_color"
                 android:text="   Voyager" />
         </RadioGroup>
 
