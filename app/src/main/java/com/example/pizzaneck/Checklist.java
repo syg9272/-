@@ -117,20 +117,43 @@ public class Checklist extends AppCompatActivity {
                 switch(click) {
                     case 0:
                         click++;
-                        if (position < 7 || (dayList.get(position)).equals("")) {
-                        } else {
-                            Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
-                            check.setTextColor(getResources().getColor(R.color._000000));
-                            gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                        if(check.getCurrentTextColor() == 0xff808080 ||
+                                check.getCurrentTextColor() == 0xffff0000 ||
+                                check.getCurrentTextColor() == 0xff005FFF ||
+                                check.getCurrentTextColor() == 0xff093A7A) {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color._000000));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                                break;
+                            }
+                        }else {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color.color_day));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                            }
                         }
                         break;
                     case 1:
                         click = 0;
-                        if (position < 7 || (dayList.get(position)).equals("")) {
-                        } else {
-                            Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
-                            check.setTextColor(getResources().getColor(R.color.color_day));
-                            gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                        if(check.getCurrentTextColor() == 0xff000000) {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color.color_day));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                                break;
+                            }
+                        }else{
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color._000000));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                            }
                         }
                         break;
                     default:
