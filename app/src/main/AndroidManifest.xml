@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".alarm"></activity>
+        <activity android:name=".alarm"/>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
