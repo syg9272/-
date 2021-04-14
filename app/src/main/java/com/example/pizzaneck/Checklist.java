@@ -62,6 +62,8 @@ public class Checklist extends AppCompatActivity {
     /* 캘린더 변수 */
     private Calendar mCal;
 
+    private int click;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,12 +108,38 @@ public class Checklist extends AppCompatActivity {
         gridAdapter = new GridAdapter(getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
+        click = 0;
+
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 check = (TextView) gridView.getChildAt(position).findViewById(R.id.tv_item_gridview);
-                check.setTextColor(getResources().getColor(R.color._000000));
-                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                switch(click) {
+                    case 0:
+                        click++;
+                        if (position < 7 || (dayList.get(position)).equals("")) {
+                        } else {
+                            Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
+                            check.setTextColor(getResources().getColor(R.color._000000));
+                            gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                        }
+                        break;
+                    case 1:
+                        click = 0;
+                        if (position < 7 || (dayList.get(position)).equals("")) {
+                        } else {
+                            Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                            check.setTextColor(getResources().getColor(R.color.color_day));
+                            gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                        }
+                        break;
+                    default:
+                        click = 0;
+                        break;
+                }
+
+
+
             }
         });
     }

@@ -155,7 +155,7 @@
                 android:textColor="@color/OnPrimary"
                 android:background="@drawable/edge_2"
                 android:fontFamily="@font/jalnan"
-                android:text="알림 소리"
+                android:text="알림음 선택"
                 android:textSize="18sp" />
         </LinearLayout>
 
