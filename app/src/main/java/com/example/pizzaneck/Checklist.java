@@ -132,7 +132,21 @@ public class Checklist extends AppCompatActivity {
                             if (position < 7 || (dayList.get(position)).equals("")) {
                             } else {
                                 Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
-                                check.setTextColor(getResources().getColor(R.color.color_day));
+                                if (position % 7 == 0) {
+                                    check.setTextColor(getResources().getColor(R.color.RED));
+                                } else if (position % 7 == 6) {
+                                    check.setTextColor(getResources().getColor(R.color.BLUE));
+                                }else {
+                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                }
+                                //해당 날짜 텍스트 컬러,배경 변경
+                                mCal = Calendar.getInstance();
+                                //오늘 day 가져옴
+                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                String sToday = String.valueOf(today);
+                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                    check.setTextColor(getResources().getColor(R.color.main));
+                                }
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                             }
                         }
@@ -143,7 +157,21 @@ public class Checklist extends AppCompatActivity {
                             if (position < 7 || (dayList.get(position)).equals("")) {
                             } else {
                                 Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
-                                check.setTextColor(getResources().getColor(R.color.color_day));
+                                if (position % 7 == 0) {
+                                    check.setTextColor(getResources().getColor(R.color.RED));
+                                } else if (position % 7 == 6) {
+                                    check.setTextColor(getResources().getColor(R.color.BLUE));
+                                }else {
+                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                }
+                                //해당 날짜 텍스트 컬러,배경 변경
+                                mCal = Calendar.getInstance();
+                                //오늘 day 가져옴
+                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                String sToday = String.valueOf(today);
+                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                    check.setTextColor(getResources().getColor(R.color.main));
+                                }
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                                 break;
                             }
