@@ -55,31 +55,76 @@
                 android:textSize="15sp"
                 android:textStyle="bold"/>
 
+            <View
+                android:layout_width="5dp"
+                android:layout_height="15dp"/>
+
             <TextView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:text=" - "
+                android:text=" -"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="15dp"/>
 
             <TextView
                 android:id="@+id/graph_today"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
                 android:fontFamily="@font/typo_ssangmundong"
-                android:text=" 0000.00.00"
+                android:text="0000.00.00"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
 
         <!--그래프 범례-->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:paddingHorizontal="130dp"
-            android:src="@drawable/graph_color" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/graph_legend_good"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/ic_legend_good"/>
+
+            <TextView
+                android:id="@+id/legend_good_text"
+                android:layout_width="70dp"
+                android:layout_height="15dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:text=" 좋은 자세"
+                android:textSize="12dp"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+
+            <ImageView
+                android:id="@+id/graph_legend_bad"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/ic_legend_bad"/>
+
+            <TextView
+                android:id="@+id/legend_bad_text"
+                android:layout_width="70dp"
+                android:layout_height="15dp"
+                android:fontFamily="@font/typo_ssangmundong"
+                android:text=" 나쁜 자세"
+                android:textSize="12dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
         <!--그래프 툴-->
         <com.github.mikephil.charting.charts.BarChart

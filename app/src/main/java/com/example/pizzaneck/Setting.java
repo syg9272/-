@@ -41,6 +41,15 @@ public class Setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         setToolbar();
+
+        Button alarm = (Button) findViewById(R.id.alarm);
+        alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),alarm.class);
+                startActivity(intent);
+            }
+        });
         radioGroup = findViewById(R.id.idRGroup);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -52,6 +61,16 @@ public class Setting extends AppCompatActivity {
                         break;
                     case R.id.idRBDark:
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        break;
+                    case R.id.idRBDefault:
+                        // 안드로이드 10 이상
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                        }
+                        // 안드로이드 10 미만
+                        else {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                        }
                         break;
                 }
             }
@@ -129,7 +148,7 @@ public class Setting extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(id == R.id.graph){
-                    Intent intent = new Intent(getApplicationContext(), Graph.class);
+                    Intent intent = new Intent(getApplicationContext(), Gallery.class);
                     startActivity(intent);
                 }
 

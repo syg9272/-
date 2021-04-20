@@ -62,6 +62,8 @@ public class Checklist extends AppCompatActivity {
     /* 캘린더 변수 */
     private Calendar mCal;
 
+    private int click;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,12 +108,89 @@ public class Checklist extends AppCompatActivity {
         gridAdapter = new GridAdapter(getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
+        click = 0;
+
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 check = (TextView) gridView.getChildAt(position).findViewById(R.id.tv_item_gridview);
-                check.setTextColor(getResources().getColor(R.color._000000));
-                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                switch(click) {
+                    case 0:
+                        click++;
+                        if(check.getCurrentTextColor() == 0xff808080 ||
+                                check.getCurrentTextColor() == 0xffff0000 ||
+                                check.getCurrentTextColor() == 0xff005FFF ||
+                                check.getCurrentTextColor() == 0xff093A7A) {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color._000000));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                                break;
+                            }
+                        }else {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                if (position % 7 == 0) {
+                                    check.setTextColor(getResources().getColor(R.color.RED));
+                                } else if (position % 7 == 6) {
+                                    check.setTextColor(getResources().getColor(R.color.BLUE));
+                                }else {
+                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                }
+                                //해당 날짜 텍스트 컬러,배경 변경
+                                mCal = Calendar.getInstance();
+                                //오늘 day 가져옴
+                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                String sToday = String.valueOf(today);
+                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                    check.setTextColor(getResources().getColor(R.color.main));
+                                }
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                            }
+                        }
+                        break;
+                    case 1:
+                        click = 0;
+                        if(check.getCurrentTextColor() == 0xff000000) {
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                if (position % 7 == 0) {
+                                    check.setTextColor(getResources().getColor(R.color.RED));
+                                } else if (position % 7 == 6) {
+                                    check.setTextColor(getResources().getColor(R.color.BLUE));
+                                }else {
+                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                }
+                                //해당 날짜 텍스트 컬러,배경 변경
+                                mCal = Calendar.getInstance();
+                                //오늘 day 가져옴
+                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                String sToday = String.valueOf(today);
+                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                    check.setTextColor(getResources().getColor(R.color.main));
+                                }
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+                                break;
+                            }
+                        }else{
+                            if (position < 7 || (dayList.get(position)).equals("")) {
+                            } else {
+                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
+                                check.setTextColor(getResources().getColor(R.color._000000));
+                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                            }
+                        }
+                        break;
+                    default:
+                        click = 0;
+                        break;
+                }
+
+
+
             }
         });
     }
