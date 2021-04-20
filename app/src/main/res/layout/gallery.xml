@@ -46,7 +46,8 @@
             android:layout_marginHorizontal="3dp"
             android:layout_marginVertical="3dp"
             android:backgroundTint="#FFFFFF"
-            android:src="@drawable/ic_photo" />
+            android:src="@drawable/ic_photo"
+            />
 
         <Button
             android:id="@+id/photo"
