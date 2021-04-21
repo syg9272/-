@@ -16,6 +16,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +73,14 @@ public class Checklist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checklist);
         setToolbar();
+
+        //디비
+        DBHelper helper;
+        SQLiteDatabase db;
+        helper = new DBHelper(Checklist.this, "newdb.db", null, 1);
+        db = helper.getWritableDatabase();
+        helper.onCreate(db);
+
         //캘린더//
         tvDate = (TextView)findViewById(R.id.tv_date);
         gridView = (GridView)findViewById(R.id.gridview);

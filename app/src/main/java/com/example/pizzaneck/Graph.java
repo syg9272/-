@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -53,6 +56,13 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph);
         setToolbar();
+
+        //디비
+        DBHelper helper;
+        SQLiteDatabase db;
+        helper = new DBHelper(Graph.this, "newdb.db", null, 1);
+        db = helper.getWritableDatabase();
+        helper.onCreate(db);
 
         BarChart barChart = findViewById(R.id.graph_total);
 

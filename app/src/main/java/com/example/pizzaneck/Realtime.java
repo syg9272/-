@@ -21,6 +21,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +49,13 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.realtime);
         setToolbar();
+
+        //디비
+        DBHelper helper;
+        SQLiteDatabase db;
+        helper = new DBHelper(Realtime.this, "newdb.db", null, 1);
+        db = helper.getWritableDatabase();
+        helper.onCreate(db);
 
         FrameLayout previewFrame = findViewById(R.id.previewFrame);
         cameraView = new CameraSurfaceView(this);
