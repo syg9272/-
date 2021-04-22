@@ -68,6 +68,8 @@ public class Checklist extends AppCompatActivity {
 
     private int click;
 
+    private long btnPressTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,23 +145,31 @@ public class Checklist extends AppCompatActivity {
                         }else {
                             if (position < 7 || (dayList.get(position)).equals("")) {
                             } else {
-                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
-                                if (position % 7 == 0) {
-                                    check.setTextColor(getResources().getColor(R.color.RED));
-                                } else if (position % 7 == 6) {
-                                    check.setTextColor(getResources().getColor(R.color.BLUE));
-                                }else {
-                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                if (System.currentTimeMillis() > btnPressTime + 1000) {
+                                    btnPressTime = System.currentTimeMillis();
+                                    Toast.makeText(getApplicationContext(), "한번 더 터치하면 체크 해제됩니다.",
+                                            Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
-                                //해당 날짜 텍스트 컬러,배경 변경
-                                mCal = Calendar.getInstance();
-                                //오늘 day 가져옴
-                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
-                                String sToday = String.valueOf(today);
-                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
-                                    check.setTextColor(getResources().getColor(R.color.main));
+                                if (System.currentTimeMillis() <= btnPressTime + 1000) {
+                                    Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                    if (position % 7 == 0) {
+                                        check.setTextColor(getResources().getColor(R.color.RED));
+                                    } else if (position % 7 == 6) {
+                                        check.setTextColor(getResources().getColor(R.color.BLUE));
+                                    }else {
+                                        check.setTextColor(getResources().getColor(R.color.color_day));
+                                    }
+                                    //해당 날짜 텍스트 컬러,배경 변경
+                                    mCal = Calendar.getInstance();
+                                    //오늘 day 가져옴
+                                    Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                    String sToday = String.valueOf(today);
+                                    if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                        check.setTextColor(getResources().getColor(R.color.main));
+                                    }
+                                    gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                                 }
-                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                             }
                         }
                         break;
@@ -168,23 +178,31 @@ public class Checklist extends AppCompatActivity {
                         if(check.getCurrentTextColor() == 0xff000000) {
                             if (position < 7 || (dayList.get(position)).equals("")) {
                             } else {
-                                Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
-                                if (position % 7 == 0) {
-                                    check.setTextColor(getResources().getColor(R.color.RED));
-                                } else if (position % 7 == 6) {
-                                    check.setTextColor(getResources().getColor(R.color.BLUE));
-                                }else {
-                                    check.setTextColor(getResources().getColor(R.color.color_day));
+                                if (System.currentTimeMillis() > btnPressTime + 1000) {
+                                    btnPressTime = System.currentTimeMillis();
+                                    Toast.makeText(getApplicationContext(), "한번 더 터치하면 체크 해제됩니다.",
+                                            Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
-                                //해당 날짜 텍스트 컬러,배경 변경
-                                mCal = Calendar.getInstance();
-                                //오늘 day 가져옴
-                                Integer today = mCal.get(Calendar.DAY_OF_MONTH);
-                                String sToday = String.valueOf(today);
-                                if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
-                                    check.setTextColor(getResources().getColor(R.color.main));
+                                if (System.currentTimeMillis() <= btnPressTime + 1000) {
+                                    Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크 해제되었습니다😥", Toast.LENGTH_SHORT).show();
+                                    if (position % 7 == 0) {
+                                        check.setTextColor(getResources().getColor(R.color.RED));
+                                    } else if (position % 7 == 6) {
+                                        check.setTextColor(getResources().getColor(R.color.BLUE));
+                                    }else {
+                                        check.setTextColor(getResources().getColor(R.color.color_day));
+                                    }
+                                    //해당 날짜 텍스트 컬러,배경 변경
+                                    mCal = Calendar.getInstance();
+                                    //오늘 day 가져옴
+                                    Integer today = mCal.get(Calendar.DAY_OF_MONTH);
+                                    String sToday = String.valueOf(today);
+                                    if (sToday.equals(dayList.get(position))) { //오늘 day 텍스트 컬러 변경
+                                        check.setTextColor(getResources().getColor(R.color.main));
+                                    }
+                                    gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                                 }
-                                gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
                                 break;
                             }
                         }else{
@@ -390,5 +408,3 @@ public class Checklist extends AppCompatActivity {
         }
     }
 }
-
-
