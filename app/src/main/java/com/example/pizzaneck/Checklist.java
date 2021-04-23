@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import android.widget.Toast;
-import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,14 +15,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -77,9 +73,9 @@ public class Checklist extends AppCompatActivity {
         setToolbar();
 
         //디비
-        DBHelper helper;
+        ChecklistDBHelper helper;
         SQLiteDatabase db;
-        helper = new DBHelper(Checklist.this, "newdb.db", null, 1);
+        helper = new ChecklistDBHelper(Checklist.this, "April_streching.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
 
@@ -140,6 +136,7 @@ public class Checklist extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
                                 check.setTextColor(getResources().getColor(R.color._000000));
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                                //디비에 insert
                                 break;
                             }
                         }else {
@@ -169,6 +166,8 @@ public class Checklist extends AppCompatActivity {
                                         check.setTextColor(getResources().getColor(R.color.main));
                                     }
                                     gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+
+                                    //디비에서 delete
                                 }
                             }
                         }
@@ -202,6 +201,8 @@ public class Checklist extends AppCompatActivity {
                                         check.setTextColor(getResources().getColor(R.color.main));
                                     }
                                     gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
+
+                                    //디비에서 delete
                                 }
                                 break;
                             }
@@ -211,6 +212,7 @@ public class Checklist extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "" + dayList.get(position) + "일에 체크되었습니다😊", Toast.LENGTH_SHORT).show();
                                 check.setTextColor(getResources().getColor(R.color._000000));
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
+                                //디비에 insert
                             }
                         }
                         break;

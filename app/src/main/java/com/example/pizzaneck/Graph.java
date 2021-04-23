@@ -1,6 +1,5 @@
 package com.example.pizzaneck;
 
-import android.graphics.Color;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,9 +10,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -22,9 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.navigation.NavigationView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -34,14 +28,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.Locale;
 
 public class Graph extends AppCompatActivity {
@@ -57,10 +48,10 @@ public class Graph extends AppCompatActivity {
         setContentView(R.layout.graph);
         setToolbar();
 
-        //디비
-        DBHelper helper;
+        //디비생성
+        GraphDBHelper helper;
         SQLiteDatabase db;
-        helper = new DBHelper(Graph.this, "newdb.db", null, 1);
+        helper = new GraphDBHelper(Graph.this, "Graph.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
 

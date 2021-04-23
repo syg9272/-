@@ -21,9 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -50,10 +48,10 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         setContentView(R.layout.realtime);
         setToolbar();
 
-        //디비
-        DBHelper helper;
+        //디비생성
+        RealtimeDBHelper helper;
         SQLiteDatabase db;
-        helper = new DBHelper(Realtime.this, "newdb.db", null, 1);
+        helper = new RealtimeDBHelper(Realtime.this, "Realtime.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
 
