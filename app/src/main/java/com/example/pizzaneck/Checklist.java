@@ -15,8 +15,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.SQLException;
 import android.content.Context;
+import android.content.ContentValues;
+import android.database.Cursor;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +70,10 @@ public class Checklist extends AppCompatActivity {
 
     private long btnPressTime = 0;
 
+    private myDBHelper helper = new myDBHelper(Checklist.this);
+    private SQLiteDatabase db;
+    private Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +81,10 @@ public class Checklist extends AppCompatActivity {
         setToolbar();
 
         //디비
-        ChecklistDBHelper helper;
-        SQLiteDatabase db;
-        helper = new ChecklistDBHelper(Checklist.this, "April_streching.db", null, 1);
+        //helper = new myDBHelper(Checklist.this);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
+        db.close();
 
         //캘린더//
         tvDate = (TextView)findViewById(R.id.tv_date);
@@ -120,6 +127,7 @@ public class Checklist extends AppCompatActivity {
 
         click = 0;
 
+
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -137,6 +145,11 @@ public class Checklist extends AppCompatActivity {
                                 check.setTextColor(getResources().getColor(R.color._000000));
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
                                 //디비에 insert
+                                db = helper.getWritableDatabase();
+                                ContentValues cv = new ContentValues();
+                                cv.put("position", position);
+                                db.insert("checklist", null, cv);
+                                db.close();
                                 break;
                             }
                         }else {
@@ -168,6 +181,9 @@ public class Checklist extends AppCompatActivity {
                                     gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
 
                                     //디비에서 delete
+                                    db = helper.getWritableDatabase();
+                                    db.execSQL("DELETE FROM checklist WHERE position="+position+";");
+                                    db.close();
                                 }
                             }
                         }
@@ -203,6 +219,9 @@ public class Checklist extends AppCompatActivity {
                                     gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#00000000"));
 
                                     //디비에서 delete
+                                    db = helper.getWritableDatabase();
+                                    db.execSQL("DELETE FROM checklist WHERE position="+position+";");
+                                    db.close();
                                 }
                                 break;
                             }
@@ -213,6 +232,11 @@ public class Checklist extends AppCompatActivity {
                                 check.setTextColor(getResources().getColor(R.color._000000));
                                 gridView.getChildAt(position).setBackgroundColor(Color.parseColor("#afeeee"));
                                 //디비에 insert
+                                db = helper.getWritableDatabase();
+                                ContentValues cv = new ContentValues();
+                                cv.put("position", position);
+                                db.insert("checklist", null, cv);
+                                db.close();
                             }
                         }
                         break;
@@ -226,6 +250,25 @@ public class Checklist extends AppCompatActivity {
             }
         });
     }
+
+    public class myDBHelper extends SQLiteOpenHelper {
+        public myDBHelper(Context context) {
+            super(context, "Streching", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS checklist ( position INTEGER PRIMARY KEY);");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS checklist");
+            onCreate(db);
+
+        }
+    }
+
 
     /**
      * 해당 월에 표시할 일 수 구함
@@ -299,6 +342,21 @@ public class Checklist extends AppCompatActivity {
                 holder.tvItemGridView.setTextColor(getResources().getColor(R.color.BLUE));
             }
 
+            //기존 데이터 불러오기
+            db = helper.getReadableDatabase();
+            cursor = db.rawQuery("SELECT * FROM checklist;",null);
+
+            while (cursor.moveToNext()){
+                int p = cursor.getInt(cursor.getColumnIndex("position"));
+                if(p == position){
+                    holder.tvItemGridView.setTextColor(getResources().getColor(R.color._000000));
+                    convertView.setBackgroundColor(Color.parseColor("#afeeee"));
+                }
+
+            }
+            cursor.close();
+            db.close();
+
             //해당 날짜 텍스트 컬러,배경 변경
             mCal = Calendar.getInstance();
             //오늘 day 가져옴
@@ -311,9 +369,9 @@ public class Checklist extends AppCompatActivity {
             }
 
 
-
             return convertView;
         }
+
     }
 
     private class ViewHolder {
