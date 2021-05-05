@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="갤러리 바로가기"
             android:fontFamily="@font/jalnan"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             />
@@ -65,6 +66,7 @@
             android:orientation="horizontal"
             android:paddingHorizontal="30dp"
             android:paddingVertical="10dp"
+            android:layout_marginTop="50dp"
             >
             <TextView
                 android:layout_width="100dp"
