@@ -51,7 +51,7 @@ public class Stretching extends AppCompatActivity {
         /*비디오 뷰*/
         vv= findViewById(R.id.stretching_vv);
         //Video Uri
-        Uri videoUri= Uri.parse("android.resource://"+getPackageName() + "/" + R.raw.vv);
+        Uri videoUri= Uri.parse("android.resource://"+getPackageName() + "/" + R.raw.streching);
 
         //비디오뷰의 재생, 일시정지 등을 할 수 있는 '컨트롤바'를 붙여주는 작업
         vv.setMediaController(new MediaController(this));
