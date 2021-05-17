@@ -50,6 +50,13 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_realtime_camera" />
+        <Button
+            android:id="@+id/alarmTest_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Alarm" />
 
     </LinearLayout>
 

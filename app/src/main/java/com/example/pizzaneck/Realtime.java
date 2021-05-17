@@ -5,13 +5,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -42,6 +47,18 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
 
     CameraSurfaceView cameraView;
 
+    private RealtimeDBHelper helper;
+    private SQLiteDatabase db;
+
+    //알림을 위한 진동, 소리
+    Vibrator vibrator;
+    SoundPool soundPool;
+    int soundId, streamId;
+
+    long startTime, endTime; //경고 시간 저장용 변수
+    long durationTime; //나쁜 자세 지속 시간
+    Button alarm;   //알람 테스트용 버튼. 개발 완료 후 삭제할 것
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +66,15 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         setToolbar();
 
         //디비생성
-        RealtimeDBHelper helper;
-        SQLiteDatabase db;
         helper = new RealtimeDBHelper(Realtime.this, "Realtime.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
+
+        //알림용
+        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        soundId = soundPool.load(this, R.raw.beep_once, 1); //현재는 beep_once, 설정에 따라 바뀔 수 있도록 구현하기
+
 
         FrameLayout previewFrame = findViewById(R.id.previewFrame);
         cameraView = new CameraSurfaceView(this);
@@ -63,6 +84,20 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 takePicture();
+            }
+        });
+        alarm=findViewById(R.id.alarmTest_btn);
+        alarm.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        startAlarm();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        endAlarm();
+                }
+                return false;
             }
         });
 
@@ -279,6 +314,28 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         } else {
             super.onBackPressed();
         }
+    }
+
+    // 알람 시작
+    protected void startAlarm(){
+        startTime = System.currentTimeMillis();
+
+        //설정에 따라 진동, 소리 울릴지 말지 구현해야함, 현재는 진동, 소리 둘다 울림
+        if(true){
+            vibrator.vibrate(new long[] {0, 500, 500}, 0); // {대기, 진동, 대기}, 무한반복(0)
+            streamId = soundPool.play(soundId, 1.0F, 1.0F, 1, -1, 1.0F);
+        }
+    }
+
+    // 알람 종료
+    protected void endAlarm(){
+        endTime = System.currentTimeMillis();
+        durationTime = (endTime - startTime) / 1000;    //나쁜 자세 지속시간. 초단위
+        helper.insertTime(db, durationTime);
+
+        Toast.makeText(this, "지속시간 : "+Long.toString(durationTime)+"초", Toast.LENGTH_SHORT).show();   //지속시간 테스트용 토스트
+        vibrator.cancel();  //진동 중지
+        soundPool.stop(streamId);   //알림음 중지
     }
 }
 

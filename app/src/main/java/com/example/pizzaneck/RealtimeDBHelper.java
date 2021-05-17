@@ -1,8 +1,14 @@
 package com.example.pizzaneck;
 
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RealtimeDBHelper extends SQLiteOpenHelper {
     public RealtimeDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -12,10 +18,11 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //테이블 생성
-        //mytable에 테이블 명 넣고 txt에 넣고 싶은 컬럼 넣고 타입도 text대신 맞는 걸로 넣으세용
-        String sql = "CREATE TABLE if not exists mytable ("
-                + "_id integer primary key autoincrement,"
-                + "txt text);";
+        // 거북목 자세 시간 테이블 (순번, 날짜, 지속시간)
+        String sql = "CREATE TABLE if not exists forward_head_posture_time ("
+                + "seq INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "date DATE NOT NULL,"
+                + "time INTEGER NOT NULL);";
 
         db.execSQL(sql);
     }
@@ -23,9 +30,29 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //mytable자리 본인이 지정한 테이블 명으로 수정
-        String sql = "DROP TABLE if exists mytable";
+        String sql = "DROP TABLE if exists forward_head_posture_time";
 
         db.execSQL(sql);
         onCreate(db);
+    }
+
+    void insertTime(SQLiteDatabase db, long time){
+        ContentValues contentValues = new ContentValues();
+
+        //오늘 날짜
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+
+        contentValues.put("date", format.format(date));
+        contentValues.put("time", time);
+        long result = db.insert("forward_head_posture_time", null, contentValues);
+
+        if(result == -1){
+            Log.d("##Database## ", "Insert Failed");
+        }
+        else{
+            Log.d("##Database## ", "Insert Success");
+        }
     }
 }
