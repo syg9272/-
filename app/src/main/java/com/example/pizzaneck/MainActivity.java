@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         realtime_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Realtime.class);
+                Intent intent = new Intent(MainActivity.this, ClassifierActivity.class);
                 startActivity(intent);
             }
         });

@@ -37,11 +37,32 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <FrameLayout
-            android:id="@+id/previewFrame"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="550dp" >
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            >
+            <FrameLayout
+                android:id="@+id/previewFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </FrameLayout>
+            <TextView
+                android:id="@+id/fruit_name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text=""
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:textSize="32sp"
+                android:background="#00000000"
+                android:textColor="@android:color/white" />
+            <include
+                android:id="@+id/bottom_sheet_layout"
+                layout="@layout/layout_bottom_sheet" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <Button
             android:id="@+id/camera_btn"

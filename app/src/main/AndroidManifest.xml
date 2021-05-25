@@ -10,6 +10,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -38,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Stretching" />
-        <activity android:name=".Realtime" />
+        <activity android:name=".ClassifierActivity" />
         <activity android:name=".Gallery" />
         <activity android:name=".Graph" />
         <activity android:name=".Setting" />
