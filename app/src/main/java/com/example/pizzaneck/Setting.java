@@ -1,6 +1,7 @@
 package com.example.pizzaneck;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -34,7 +35,37 @@ public class Setting extends AppCompatActivity {
     NavigationView navView;
     Toolbar toolbar;
     LinearLayout layout;
+
+    RadioButton button1;
+    RadioButton button2;
     private RadioGroup radioGroup;
+    private SharedPreferences appData;
+    private SharedPreferences.Editor editor;
+
+    private void load() {
+        String alarmSetting = appData.getString("ALARM_SETTING", "");
+        switch (alarmSetting) {
+            case "SOUND":
+                button1.setChecked(true);
+                break;
+            case "VIBRATE":
+                button2.setChecked(true);
+                break;
+        }
+        String modeSetting = appData.getString("MODE_SETTING","");
+        switch (modeSetting){
+            case "LIGHT":
+                radioGroup.check(R.id.idRBLight);
+                break;
+            case "DARK":
+                radioGroup.check(R.id.idRBDark);
+                break;
+            case "DEFAULT":
+                radioGroup.check(R.id.idRBDefault);
+                break;
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +81,34 @@ public class Setting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        editor = appData.edit();
+
+
         radioGroup = findViewById(R.id.idRGroup);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 switch (checkedId){
                     case R.id.idRBLight:
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        editor.putString("MODE_SETTING","LIGHT");
+                        editor.commit();
                         break;
                     case R.id.idRBDark:
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        editor.putString("MODE_SETTING","DARK");
+                        editor.commit();
                         break;
                     case R.id.idRBDefault:
                         // 안드로이드 10 이상
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                            editor.putString("MODE_SETTING","DEFAULT");
+                            editor.commit();
                         }
                         // 안드로이드 10 미만
                         else {
@@ -77,7 +120,7 @@ public class Setting extends AppCompatActivity {
         });
 
 
-        RadioButton button2 = (RadioButton) findViewById(R.id.button2);
+        button2 = (RadioButton) findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,18 +131,24 @@ public class Setting extends AppCompatActivity {
                 }else{
                     vibrator.vibrate(1000);
                 }
+                editor.putString("ALARM_SETTING","VIBRATE");
+                editor.commit();
             }
         });
 
-        RadioButton button1 = (RadioButton) findViewById(R.id.button1);
+        button1 = (RadioButton) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),uri);
                 ringtone.play();
+                editor.putString("ALARM_SETTING","SOUND");
+                editor.commit();
             }
         });
+
+        load();
     }
 
     /* 툴바 및 툴바기능 설정 함수.
