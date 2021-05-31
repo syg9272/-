@@ -103,6 +103,18 @@ public class Setting extends AppCompatActivity {
                         editor.putString("MODE_SETTING","DARK");
                         editor.commit();
                         break;
+                    case R.id.idRBDefault:
+                        // 안드로이드 10 이상
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                            editor.putString("MODE_SETTING","DEFAULT");
+                            editor.commit();
+                        }
+                        // 안드로이드 10 미만
+                        else {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                        }
+                        break;
                 }
             }
         });
