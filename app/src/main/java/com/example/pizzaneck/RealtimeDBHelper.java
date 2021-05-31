@@ -63,7 +63,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
     public int warningCount() {
         int count = 0;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT count(*) FROM forward_head_posture_time WHERE date=(SELECT date('now', 'localtime'))", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time WHERE date=(SELECT date('now', 'localtime'))", null);
         count = cursor.getCount();
         db.close();
         return count;

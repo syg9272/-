@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime;   //뒤로가기 누른 시간. 뒤로가기 두번으로 종료 위한 변수
     LinearLayout realtime_btn, gallery_btn, stretching_btn, byDate_Btn;
-    TextView today, warning;
+    TextView today, warning, posture;
 
     private RealtimeDBHelper r_dbHelper;
 
@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         warning = (TextView)findViewById(R.id.warning_number);
         int count = r_dbHelper.warningCount();
         warning.setText(Integer.toString(count) + "회");
+
+        //오늘의 자세 점수 출력
+
+
     }
     //뒤로가기 눌렀을때 호출. 뒤로가기 두번으로 앱 종료 위함
     @Override
