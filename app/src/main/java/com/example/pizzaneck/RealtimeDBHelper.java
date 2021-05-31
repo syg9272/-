@@ -1,16 +1,20 @@
 package com.example.pizzaneck;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.lang.String;
 
 public class RealtimeDBHelper extends SQLiteOpenHelper {
+
     public RealtimeDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -42,7 +46,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         //오늘 날짜
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         contentValues.put("date", format.format(date));
         contentValues.put("time", time);
@@ -54,5 +58,14 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         else{
             Log.d("##Database## ", "Insert Success");
         }
+    }
+
+    public int warningCount() {
+        int count = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM forward_head_posture_time WHERE date=(SELECT date('now', 'localtime'))", null);
+        count = cursor.getCount();
+        db.close();
+        return count;
     }
 }
