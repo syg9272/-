@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         gallery_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Gallery.class);
+                Intent intent = new Intent(MainActivity.this, Setting.class);
                 startActivity(intent);
             }
         });
@@ -64,14 +64,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton setting_btn = (ImageButton)findViewById(R.id.setting_btn);
-        setting_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Setting.class);
-                startActivity(intent);
-            }
-        });
 
         //오늘 날짜 출력
         today = (TextView)findViewById(R.id.textView_today);
