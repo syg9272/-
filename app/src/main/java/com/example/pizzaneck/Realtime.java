@@ -80,26 +80,26 @@ public class Realtime extends AppCompatActivity implements AutoPermissionsListen
         cameraView = new CameraSurfaceView(this);
         previewFrame.addView(cameraView);
 
-        Button button = findViewById(R.id.camera_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                takePicture();
-            }
-        });
-        alarm=findViewById(R.id.alarmTest_btn);
-        alarm.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        startAlarm();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        endAlarm();
-                }
-                return false;
-            }
-        });
+//        Button button = findViewById(R.id.camera_btn);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                takePicture();
+//            }
+//        });
+//        alarm=findViewById(R.id.alarmTest_btn);
+//        alarm.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch(event.getAction()){
+//                    case MotionEvent.ACTION_DOWN:
+//                        startAlarm();
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        endAlarm();
+//                }
+//                return false;
+//            }
+//        });
 
         AutoPermissions.Companion.loadAllPermissions(this, 101);
     }

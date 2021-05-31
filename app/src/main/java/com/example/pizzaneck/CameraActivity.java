@@ -19,6 +19,7 @@ package com.example.pizzaneck;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
@@ -147,8 +148,6 @@ public abstract class CameraActivity extends AppCompatActivity
   private int numThreads = -1;
 
 
-  DrawerLayout drawerLayout;
-  NavigationView navView;
   Toolbar toolbar;
 
   private RealtimeDBHelper helper;
@@ -158,10 +157,13 @@ public abstract class CameraActivity extends AppCompatActivity
   Vibrator vibrator;
   SoundPool soundPool;
   int soundId, streamId;
+  //애플리케이션 셜정값
+  private SharedPreferences appData;
+  private String notify;  // 진동, 소리, 무음
+  private String bell;  //알림음
 
   long startTime, endTime; //경고 시간 저장용 변수
   long durationTime; //나쁜 자세 지속 시간
-  Button alarm;   //알람 테스트용 버튼. 개발 완료 후 삭제할 것
 
   int flag = 0; // 0:good, 1:bad
 
@@ -172,7 +174,7 @@ public abstract class CameraActivity extends AppCompatActivity
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     setContentView(R.layout.realtime);
-    Toolbar toolbar = findViewById(R.id.toolbar);
+    toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -181,25 +183,11 @@ public abstract class CameraActivity extends AppCompatActivity
     db = helper.getWritableDatabase();
     helper.onCreate(db);
 
-    //알림용
-    vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-    soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-    soundId = soundPool.load(this, R.raw.beep_once, 1); //현재는 beep_once, 설정에 따라 바뀔 수 있도록 구현하기
+    getSetting(); // 애플리케이션 설정값 불러옴
 
-    alarm=findViewById(R.id.alarmTest_btn);
-    alarm.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(View v, MotionEvent event) {
-        switch(event.getAction()){
-          case MotionEvent.ACTION_DOWN:
-            startAlarm();
-            break;
-          case MotionEvent.ACTION_UP:
-            endAlarm();
-        }
-        return false;
-      }
-    });
+
+
+
 
     if (hasPermission()) {
       setFragment();
@@ -633,15 +621,15 @@ public abstract class CameraActivity extends AppCompatActivity
         }
           if(recognition.getConfidence()>0.90f){
             // 알림 관련
-            if(flag == 0){  //현재상태 good일때
+            if(flag == 0){  // 현재상태 good일때
               if(recognition.getTitle().equals("bad_left") || recognition.getTitle().equals("bad_right")){  //bad로 바뀐다면
                 flag = 1;
                 result_text.setText("자세 나쁨");
                 result_text.setBackgroundColor(Color.argb(0xaa,0xaa,0x00,0x00));
                 startAlarm();
               }
-            } else{
-              if(recognition.getTitle().equals("good_left") || recognition.getTitle().equals("good_right")){  //good으로 바뀐다면
+            } else{ // 현재상태 bad일때
+              if(!(recognition.getTitle().equals("bad_left") || recognition.getTitle().equals("bad_right"))){  //good으로 바뀐다면 (bad가 아니라면, 식별 불가일때 포함하기 위함)
                 flag = 0;
                 result_text.setText("");
                 result_text.setBackgroundColor(Color.argb(0x00,0x00,0x00,0x00));;
@@ -776,55 +764,7 @@ public abstract class CameraActivity extends AppCompatActivity
     // Do nothing.
   }
 
-  /* 툴바 및 툴바기능 설정 함수.
-   * onCreate에서 호출
-   * 클래스 내 DrawerLayout drawerLayout; NavigationView navView; Toolbar toolbar; 선언 필요
-   */
-  protected void setToolbar() {
-    //툴바 설정
-    toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    ActionBar actionBar = getSupportActionBar();
-    actionBar.setDisplayShowTitleEnabled(false);    //기존 title 지우기
-    actionBar.setDisplayHomeAsUpEnabled(true);      //뒤로가기 버튼 생성. 이 버튼을 메뉴바 버튼으로 사용
-    actionBar.setHomeAsUpIndicator(R.drawable.ic_menu); //뒤로가기 버튼 아이콘 -> 메뉴 아이콘 변경
 
-
-    drawerLayout = findViewById(R.id.drawer_layout);
-    navView = findViewById(R.id.nav_view);
-    navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-      @Override
-      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        menuItem.setChecked(true);
-        drawerLayout.closeDrawers();
-
-        int id = menuItem.getItemId();
-
-        if (id == R.id.home) {
-          Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-          //액티비티 스택제거 -> 메인에서는 뒤로가기 누르면 이전 액티비티로 가지 않고 종료됨.
-          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-          startActivity(intent);
-        } else if (id == R.id.realtime) {
-          Intent intent = new Intent(getApplicationContext(), Realtime.class);
-          startActivity(intent);
-        } else if (id == R.id.gallery) {
-          Intent intent = new Intent(getApplicationContext(), Gallery.class);
-          startActivity(intent);
-
-        } else if (id == R.id.stretching) {
-          Intent intent = new Intent(getApplicationContext(), Stretching.class);
-          startActivity(intent);
-        } else if (id == R.id.graph) {
-          Intent intent = new Intent(getApplicationContext(), Graph.class);
-          startActivity(intent);
-        }
-
-        menuItem.setChecked(false);
-        return true;
-      }
-    });
-  }
 
   //툴바 우측에 버튼 생성 (설정버튼)
   @Override
@@ -838,26 +778,19 @@ public abstract class CameraActivity extends AppCompatActivity
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      //네비게이션드로어
-      case android.R.id.home:
-        drawerLayout.openDrawer(GravityCompat.START);
-        return true;
       //설정버튼
       case R.id.setting:
+        endAlarm();
         Intent intent = new Intent(getApplicationContext(), Setting.class);
         startActivity(intent);
     }
     return super.onOptionsItemSelected(item);
   }
 
-  //네비게이션 열려있을때 뒤로가기로 버튼 닫기
   @Override
-  public void onBackPressed() {
-    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-      drawerLayout.closeDrawer(GravityCompat.START);
-    } else {
-      super.onBackPressed();
-    }
+  public void onBackPressed(){
+    endAlarm();
+    super.onBackPressed();
   }
 
   // 알람 시작
@@ -865,20 +798,74 @@ public abstract class CameraActivity extends AppCompatActivity
     startTime = System.currentTimeMillis();
 
     //설정에 따라 진동, 소리 울릴지 말지 구현해야함, 현재는 진동, 소리 둘다 울림
-    if(true){
-      vibrator.vibrate(new long[] {0, 500, 500}, 0); // {대기, 진동, 대기}, 무한반복(0)
+    if(notify.equals("SOUND")){
       streamId = soundPool.play(soundId, 1.0F, 1.0F, 1, -1, 1.0F);
     }
+    else if(notify.equals("VIBRATE")){
+      vibrator.vibrate(new long[] {0, 700, 1000}, 0); // {대기, 진동, 대기}, 무한반복(0)
+    }
+
   }
 
   // 알람 종료
   protected void endAlarm(){
+
     endTime = System.currentTimeMillis();
     durationTime = (endTime - startTime) / 1000;    //나쁜 자세 지속시간. 초단위
     helper.insertTime(db, durationTime);
 
     Toast.makeText(this, "지속시간 : "+Long.toString(durationTime)+"초", Toast.LENGTH_SHORT).show();   //지속시간 테스트용 토스트
-    vibrator.cancel();  //진동 중지
-    soundPool.stop(streamId);   //알림음 중지
+
+    if(notify.equals("SOUND")){
+      soundPool.stop(streamId);
+    }
+    else if(notify.equals("VIBRATE")){
+      vibrator.cancel();  //진동 중지
+    }
+  }
+
+  // SharedPreferences에서 설정 불러오는 함수
+  protected void getSetting(){
+    appData = getSharedPreferences("appData", MODE_PRIVATE);
+    notify = appData.getString("ALARM_SETTING", "");
+    bell = appData.getString("ALARM_SOUND","");
+
+    if (notify.equals("SOUND")){
+      soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+
+      switch (bell) {
+        case "Alien":
+          soundId = soundPool.load(this, R.raw.alien, 1);
+          break;
+        case "Beep_once":
+          soundId = soundPool.load(this, R.raw.beep_once, 1);
+          break;
+        case "Chaos":
+          soundId = soundPool.load(this, R.raw.chaos, 1);
+          break;
+        case "Luna":
+          soundId = soundPool.load(this, R.raw.luna, 1);
+          break;
+        case "Milky_way":
+          soundId = soundPool.load(this, R.raw.milky_way, 1);
+          break;
+        case "Orion":
+          soundId = soundPool.load(this, R.raw.orion, 1);
+          break;
+        case "Prism":
+          soundId = soundPool.load(this, R.raw.prism, 1);
+          break;
+        case "Signal":
+          soundId = soundPool.load(this, R.raw.signal, 1);
+          break;
+        case "Voyager":
+          soundId = soundPool.load(this, R.raw.voyager, 1);
+          break;
+      }
+    }
+    else if (notify.equals("VIBRATE")){
+      vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
   }
 }

@@ -299,7 +299,7 @@ public abstract class Classifier {
     ImageProcessor imageProcessor =
         new ImageProcessor.Builder()
             .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
-            .add(new ResizeOp(imageSizeX, imageSizeY, ResizeMethod.NEAREST_NEIGHBOR))
+            .add(new ResizeOp(128, 128, ResizeMethod.NEAREST_NEIGHBOR))
             .add(new Rot90Op(numRoration))
             .add(getPreprocessNormalizeOp())
             .build();
