@@ -24,14 +24,7 @@
             android:textColor="@color/main_color"
             android:fontFamily="@font/jalnan"
             android:textSize="30sp"/>
-        <ImageButton
-            android:id="@+id/setting_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_setting"
-            android:background="@android:color/transparent"
-            android:layout_gravity="right"
-            />
+
     </androidx.appcompat.widget.Toolbar>
 
     <!--오늘 날짜-->
@@ -183,13 +176,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_image"
+                    android:background="@drawable/ic_set"
                     android:clickable="false"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="갤러리에서 불러오기"
+                    android:layout_marginTop="0dp"
+                    android:text="설정 바로가기"
                     android:textColor="@color/color_000000"
                     android:textSize="15sp"
                     android:clickable="false"/>
