@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
-                        android:text="21회"
+                        android:text="00"
                         android:textColor="#E78515"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -301,11 +301,12 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/first_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="50 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -314,7 +315,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -346,11 +347,12 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/second_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="60 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -359,7 +361,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -390,12 +392,14 @@
                                 android:layout_height="20dp"
                                 android:layout_weight="1" />
 
+
                             <TextView
+                                android:id="@+id/third_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="1 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -404,26 +408,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="min "
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="30 "
-                                android:textColor="@color/graph_text"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -454,12 +439,14 @@
                                 android:layout_height="20dp"
                                 android:layout_weight="1" />
 
+
                             <TextView
+                                android:id="@+id/fourth_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="3 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -468,25 +455,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="min "
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="12 "
-                                android:textColor="@color/graph_text"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -518,11 +487,12 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/fifth_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="2 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -531,25 +501,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="min "
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="03 "
-                                android:textColor="@color/graph_text"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -581,11 +533,12 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/sixth_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="57 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -594,7 +547,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -627,11 +580,12 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/seventh_date_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="23 "
+                                android:text="00"
                                 android:textColor="@color/graph_text"
                                 android:textSize="12sp" />
 
@@ -640,7 +594,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="sec"
+                                android:text=" sec"
                                 android:textColor="@color/graph_data"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -684,7 +638,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
-                        android:text="40%"
+                        android:text="0000"
                         android:textColor="#7D4799"
                         android:textSize="15sp" />
                 </LinearLayout>

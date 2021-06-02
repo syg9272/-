@@ -1,6 +1,10 @@
 package com.example.pizzaneck;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +33,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +46,13 @@ public class Graph extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
-    TextView today, week, first, second, third, fourth, fifth, sixth, seventh;
+    TextView today, week, first, second, third, fourth, fifth, sixth, seventh, warning_count, evaluation, bad_percent;
+    TextView time[] = new TextView[7];
+
+    private RealtimeDBHelper g_dbHelper;
+    private Graph.myDBHelper helper;
+    private SQLiteDatabase db;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,38 +60,160 @@ public class Graph extends AppCompatActivity {
         setContentView(R.layout.graph);
         setToolbar();
 
+        g_dbHelper = new RealtimeDBHelper(Graph.this, "Realtime.db", null, 1);
+
         //디비생성
-        GraphDBHelper helper;
-        SQLiteDatabase db;
-        helper = new GraphDBHelper(Graph.this, "Graph.db", null, 1);
+        helper = new myDBHelper(Graph.this);
         db = helper.getWritableDatabase();
-        helper.onCreate(db);
+        helper.onUpgrade(db, 1, 1);
+
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-24',10,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-25',20,30)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-26',30,40)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-27',20,30)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-28',20,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-29',25,30)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-30',30,10)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-31',50,50)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-06-01',30,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-06-02',30,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-06-03',30,20)");
+        //
+        db.close();
+        //GraphDBHelper helper;
+        //SQLiteDatabase db;
+        //helper = new GraphDBHelper(Graph.this, "Graph.db", null, 1);
+
+        //db = helper.getWritableDatabase();
+        //helper.onCreate(db);
 
         BarChart barChart = findViewById(R.id.graph_total);
 
+        //일주일 전 날짜 - 오늘 날짜 0000.00.00 - 0000.00.00
+        //일주일 전 날짜
+        week = (TextView)findViewById(R.id.graph_week);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,-6);
+        Date date = calendar.getTime();
+        SimpleDateFormat format01 = new SimpleDateFormat("yyyy.MM.dd");
+        String date_str = format01.format(date);
+        week.setText(date_str);
+
+        //오늘 날짜
+        today = (TextView)findViewById(R.id.graph_today);
+        long now = System.currentTimeMillis();
+        Date day = new Date(now);
+        SimpleDateFormat format02 = new SimpleDateFormat("yyyy.MM.dd");
+        String day_str = format02.format(day);
+        today.setText(day_str);
+
+        //자세히보기 내용 중 날짜(일주일 전부터 오늘 날짜까지)
+        //D-7
+        first = (TextView)findViewById(R.id.graph_first_date);
+        Calendar calendar_first = Calendar.getInstance();
+        calendar_first.add(Calendar.DAY_OF_MONTH,-6);
+        Date date_first = calendar_first.getTime();
+        SimpleDateFormat format_first = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_first_str = format_first.format(date_first);
+        first.setText(date_first_str);
+
+        //D-6
+        second = (TextView)findViewById(R.id.graph_second_date);
+        Calendar calendar_second = Calendar.getInstance();
+        calendar_second.add(Calendar.DAY_OF_MONTH,-5);
+        Date date_second = calendar_second.getTime();
+        SimpleDateFormat format_second = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_second_str = format_second.format(date_second);
+        second.setText(date_second_str);
+
+        //D-5
+        third = (TextView)findViewById(R.id.graph_third_date);
+        Calendar calendar_third = Calendar.getInstance();
+        calendar_third.add(Calendar.DAY_OF_MONTH,-4);
+        Date date_third = calendar_third.getTime();
+        SimpleDateFormat format_third = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_third_str = format_third.format(date_third);
+        third.setText(date_third_str);
+
+        //D-4
+        fourth = (TextView)findViewById(R.id.graph_fourth_date);
+        Calendar calendar_fourth = Calendar.getInstance();
+        calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
+        Date date_fourth = calendar_fourth.getTime();
+        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_fourth_str = format_fourth.format(date_fourth);
+        fourth.setText(date_fourth_str);
+
+        //D-3
+        fifth = (TextView)findViewById(R.id.graph_fifth_date);
+        Calendar calendar_fifth = Calendar.getInstance();
+        calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
+        Date date_fifth = calendar_fifth.getTime();
+        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_fifth_str = format_fifth.format(date_fifth);
+        fifth.setText(date_fifth_str);
+
+        //D-2
+        sixth = (TextView)findViewById(R.id.graph_sixth_date);
+        Calendar calendar_sixth = Calendar.getInstance();
+        calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
+        Date date_sixth = calendar_sixth.getTime();
+        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String date_sixth_str = format_sixth.format(date_sixth);
+        sixth.setText(date_sixth_str);
+
+        //D-DAY
+        seventh = (TextView)findViewById(R.id.graph_seventh_date);
+        long now_seventh = System.currentTimeMillis();
+        Date day_seventh = new Date(now_seventh);
+        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        String day_seventh_str = format_seventh.format(day_seventh);
+        seventh.setText(day_seventh_str);
+
+
         //임의의 값 설정
+
+        SimpleDateFormat week_ago_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String week_ago_format = week_ago_pattern.format(date);
+        SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String today_format = today_pattern.format(day_seventh);
+
+        // 나쁜자세 지속시간 자세히 보기
+        time[0] = (TextView)findViewById(R.id.first_date_txt);
+        time[1] = (TextView)findViewById(R.id.second_date_txt);
+        time[2] = (TextView)findViewById(R.id.third_date_txt);
+        time[3] = (TextView)findViewById(R.id.fourth_date_txt);
+        time[4] = (TextView)findViewById(R.id.fifth_date_txt);
+        time[5] = (TextView)findViewById(R.id.sixth_date_txt);
+        time[6] = (TextView)findViewById(R.id.seventh_date_txt);
+
+        db = helper.getReadableDatabase();
         ArrayList<BarEntry> visitors = new ArrayList<>();
-        visitors.add(new BarEntry(17,8));
-        visitors.add(new BarEntry(18,3));
+        Cursor cursor = db.rawQuery("SELECT * FROM Total_Graph " +
+                "WHERE stat_date " +
+                "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'",null);
 
-        visitors.add(new BarEntry(20,4));
-        visitors.add(new BarEntry(21,7));
+        int i = 0;
+        int x = 17;
 
-        visitors.add(new BarEntry(23,9));
-        visitors.add(new BarEntry(24,3));
+        int good_time_total = 0;
+        int bad_time_total = 0;
 
-        visitors.add(new BarEntry(26,3));
-        visitors.add(new BarEntry(27,5));
+        while(cursor.moveToNext()){
+            good_time_total += cursor.getInt(1);
+            bad_time_total += cursor.getInt(2);
 
-        visitors.add(new BarEntry(29,12));
-        visitors.add(new BarEntry(30,6));
+            visitors.add(new BarEntry(x,cursor.getInt(1)));
+            x++;
+            visitors.add(new BarEntry(x,cursor.getInt(2)));
+            x+=2;
 
-        visitors.add(new BarEntry(32,8));
-        visitors.add(new BarEntry(33,1));
+            time[i].setText(cursor.getString(2));
+            i++;
 
-        visitors.add(new BarEntry(35,5));
-        visitors.add(new BarEntry(36,8));
+        }
 
+        db.close();
 
         //그래프 세팅
         BarDataSet barDataSet = new BarDataSet(visitors, "자세 지속시간");
@@ -120,6 +254,28 @@ public class Graph extends AppCompatActivity {
         yRAxis.setDrawAxisLine(false);
         yRAxis.setDrawGridLines(false);
 
+        //이번주 당신의 자세는
+        evaluation = (TextView)findViewById(R.id.graph_evaluation);
+        int sum = g_dbHelper.warning_Total_Count();
+        if(sum < 3){
+            evaluation.setText("Excellent");
+        }
+        else if(sum >= 3 && sum < 6){
+            evaluation.setText("Great");
+        }
+        else if(sum >= 6 && sum < 9){
+            evaluation.setText("Good");
+        }
+        else if(sum >= 9 && sum < 12){
+            evaluation.setText("So so");
+        }
+        else {
+            evaluation.setText("Bad");
+        }
+
+        //총 알림 횟수는
+        warning_count = (TextView)findViewById(R.id.graph_count);
+        warning_count.setText(Integer.toString(sum) + "회");
 
         //자세히보기 버튼
         btn1 = (Button) findViewById(R.id.graph_detail);
@@ -142,88 +298,43 @@ public class Graph extends AppCompatActivity {
             }
         });
 
-        //일주일 전 날짜 - 오늘 날짜 0000.00.00 - 0000.00.00
-        //일주일 전 날짜
-        week = (TextView)findViewById(R.id.graph_week);
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH,-6);
-        Date date = calendar.getTime();
-        SimpleDateFormat format01 = new SimpleDateFormat("yyyy.MM.dd");
-        String date_str = format01.format(date);
-        week.setText(date_str);
+        //나쁜 자세 비율은
+        double percent = ((double)bad_time_total/((double)good_time_total + (double)bad_time_total)) * 100.0;
 
-        //오늘 날짜
-        today = (TextView)findViewById(R.id.graph_today);
-        long now = System.currentTimeMillis();
-        Date day = new Date(now);
-        SimpleDateFormat format02 = new SimpleDateFormat("yyyy.MM.dd");
-        String day_str = format02.format(day);
-        today.setText(day_str);
+        String result = String.format("%.2f", percent);
+        bad_percent = (TextView)findViewById(R.id.percent);
+        bad_percent.setText(result + "%");
 
-        //자세히보기 내용 중 날짜(일주일 전부터 오늘 날짜까지)
-        //D-7
-        first = (TextView)findViewById(R.id.graph_first_date);
-        Calendar calendar_first = Calendar.getInstance();
-        calendar_first.add(Calendar.DAY_OF_MONTH,-6);
-        Date date_first = calendar_first.getTime();
-        SimpleDateFormat format_first = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_first_str = format_first.format(date_first);
-        first.setText(date_first_str);
 
-        //D-6
-        second = (TextView)findViewById(R.id.graph_second_date);
-        Calendar calendar_second = Calendar.getInstance();
-        calendar_second.add(Calendar.DAY_OF_MONTH,-5);
-        Date date_second = calendar_second.getTime();
-        SimpleDateFormat format_second = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_second_str = format_second.format(date_second);
-        second.setText(date_second_str);
-
-        //D-5
-        third = (TextView)findViewById(R.id.graph_third_date);
-        Calendar calendar_third = Calendar.getInstance();
-        calendar_third.add(Calendar.DAY_OF_MONTH,-4);
-        Date date_third = calendar_third.getTime();
-        SimpleDateFormat format_third = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_third_str = format_third.format(date_third);
-        third.setText(date_third_str);
-
-        //D-4
-        fourth = (TextView)findViewById(R.id.graph_fourth_date);
-        Calendar calendar_fourth = Calendar.getInstance();
-        calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
-        Date date_fourth = calendar_fourth.getTime();
-        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_fourth_str = format_fourth.format(date_fourth);
-        fourth.setText(date_fourth_str);
-
-        //D-3
-        fifth = (TextView)findViewById(R.id.graph_fifth_date);
-        Calendar calendar_fifth = Calendar.getInstance();
-        calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
-        Date date_fifth = calendar_fifth.getTime();
-        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_fifth_str = format_fifth.format(date_fifth);
-        fifth.setText(date_fifth_str);
-
-        //D-2
-        sixth = (TextView)findViewById(R.id.graph_sixth_date);
-        Calendar calendar_sixth = Calendar.getInstance();
-        calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
-        Date date_sixth = calendar_sixth.getTime();
-        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String date_sixth_str = format_sixth.format(date_sixth);
-        sixth.setText(date_sixth_str);
-
-        //D-DAY
-        seventh = (TextView)findViewById(R.id.graph_seventh_date);
-        long now_seventh = System.currentTimeMillis();
-        Date day_seventh = new Date(now_seventh);
-        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
-        String day_seventh_str = format_seventh.format(day_seventh);
-        seventh.setText(day_seventh_str);
 
     }
+
+
+
+    public class myDBHelper extends SQLiteOpenHelper {
+        public myDBHelper(Context context) {
+            super(context, "Graph", null, 1);
+        }
+
+        private static final int DB_VERSION = 1;
+        private static final String DB_NAME = "Graph.db";
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS Total_Graph ("
+                    + "stat_date DATE PRIMARY KEY,"
+                    + "good_time INTEGER NOT NULL,"
+                    + "wrong_time INTEGER NOT NULL)");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS Total_Graph");
+            onCreate(db);
+
+        }
+    }
+
 
     public Button btn1;
     public boolean flag;

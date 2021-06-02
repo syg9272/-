@@ -68,4 +68,17 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         db.close();
         return count;
     }
+
+    public int warning_Total_Count() {
+        int count = 0;
+        int sum = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time WHERE date=(SELECT date('now', 'localtime'))", null);
+
+        count = cursor.getCount();
+        sum += count;
+
+        db.close();
+        return sum;
+    }
 }
