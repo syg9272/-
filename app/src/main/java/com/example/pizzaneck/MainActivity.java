@@ -1,5 +1,7 @@
 package com.example.pizzaneck;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
 import android.content.Intent;
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //오늘 날짜 출력
         today = (TextView)findViewById(R.id.textView_today);
         long now = System.currentTimeMillis();
@@ -73,9 +74,29 @@ public class MainActivity extends AppCompatActivity {
         warning.setText(Integer.toString(count) + "회");
 
         //오늘의 자세 점수 출력
-
-
+        posture = (TextView)findViewById(R.id.textView_point);
+        if(count < 3) {
+            posture.setText("EXCELLENT");
+            posture.setTextColor(Color.parseColor("#0F9616"));
+        } else if(count >= 3 && count < 6) {
+            posture.setText("GREAT");
+            posture.setTextColor(Color.parseColor("#7FA82F"));
+            posture.setTextSize(45);
+        } else if(count >= 6 && count < 9) {
+            posture.setText("GOOD");
+            posture.setTextColor(Color.parseColor("#C4C423"));
+            posture.setTextSize(45);
+        } else if(count >= 9 && count < 12) {
+            posture.setText("SOSO");
+            posture.setTextColor(Color.parseColor("#C47C4B"));
+            posture.setTextSize(45);
+        } else {
+            posture.setText("BAD");
+            posture.setTextColor(Color.parseColor("#C1432F"));
+            posture.setTextSize(45);
+        }
     }
+
     //뒤로가기 눌렀을때 호출. 뒤로가기 두번으로 앱 종료 위함
     @Override
     public void onBackPressed(){
