@@ -3,6 +3,7 @@ package com.example.pizzaneck;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -38,6 +39,7 @@ public class Setting extends AppCompatActivity {
 
     RadioButton button1;
     RadioButton button2;
+    RadioButton button3;
     private RadioGroup radioGroup;
     private SharedPreferences appData;
     private SharedPreferences.Editor editor;
@@ -119,6 +121,17 @@ public class Setting extends AppCompatActivity {
             }
         });
 
+        button1 = (RadioButton) findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),uri);
+                ringtone.play();
+                editor.putString("ALARM_SETTING","SOUND");
+                editor.commit();
+            }
+        });
 
         button2 = (RadioButton) findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -136,18 +149,15 @@ public class Setting extends AppCompatActivity {
             }
         });
 
-        button1 = (RadioButton) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        button3 = (RadioButton) findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),uri);
-                ringtone.play();
-                editor.putString("ALARM_SETTING","SOUND");
-                editor.commit();
+                ringtone.stop();
             }
         });
-
         load();
     }
 
