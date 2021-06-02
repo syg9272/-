@@ -1,10 +1,15 @@
 package com.example.pizzaneck;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.w3c.dom.Text;
@@ -17,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     TextView today, warning, posture;
 
     private RealtimeDBHelper r_dbHelper;
-
+    private SharedPreferences appData;
+    private RadioGroup radioGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +81,26 @@ public class MainActivity extends AppCompatActivity {
         //오늘의 자세 점수 출력
 
 
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        appData.getString("MODE_SETTING","");
+        String DARK = appData.getString("MODE_SETTING", "");
+        switch (DARK){
+            case "LIGHT":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case "DARK":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case "DEFAULT":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                // 안드로이드 10 미만
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                }
+                break;
+        }
     }
     //뒤로가기 눌렀을때 호출. 뒤로가기 두번으로 앱 종료 위함
     @Override
