@@ -53,6 +53,9 @@ public class Setting extends AppCompatActivity {
             case "VIBRATE":
                 button2.setChecked(true);
                 break;
+            case "MUTE":
+                button3.setChecked(true);
+                break;
         }
         String modeSetting = appData.getString("MODE_SETTING","");
         switch (modeSetting){
@@ -156,6 +159,8 @@ public class Setting extends AppCompatActivity {
                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),uri);
                 ringtone.stop();
+                editor.putString("ALARM_SETTING","MUTE");
+                editor.commit();
             }
         });
         load();
