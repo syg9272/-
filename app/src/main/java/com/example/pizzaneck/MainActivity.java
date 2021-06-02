@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long backPressedTime;   //뒤로가기 누른 시간. 뒤로가기 두번으로 종료 위한 변수
     LinearLayout realtime_btn, gallery_btn, stretching_btn, byDate_Btn;
-    TextView today, warning, posture;
+    TextView today, warning, posture, useage;
 
     private RealtimeDBHelper r_dbHelper;
     private SharedPreferences appData;
@@ -66,6 +66,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        appData.getString("MODE_SETTING","");
+        String DARK = appData.getString("MODE_SETTING", "");
+        switch (DARK){
+            case "LIGHT":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case "DARK":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case "DEFAULT":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                }
+                // 안드로이드 10 미만
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
         //오늘 날짜 출력
         today = (TextView)findViewById(R.id.textView_today);
         long now = System.currentTimeMillis();
@@ -73,6 +100,28 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
         String date_str = format.format(date);
         today.setText(date_str);
+
+        //총 사용시간 출력
+        useage = findViewById(R.id.textView_useage_time);
+        int totalTime = r_dbHelper.getTotalTime();
+
+        if(totalTime >= 60){    // 1분 이상
+            int minutes;
+            int seconds;
+            if(totalTime >= 3600){  //1시간 이상
+                int hours = totalTime / 3600;
+                minutes = totalTime % 3600;
+                seconds = minutes % 60;
+                minutes = minutes / 60;
+                useage.setText(Integer.toString(hours) + "시간 " + Integer.toString(minutes) + "분 " + Integer.toString(seconds) + "초");
+            }
+            minutes = totalTime / 60;
+            seconds = totalTime % 60;
+            useage.setText(Integer.toString(minutes) + "분 " + Integer.toString(seconds) + "초");
+        } else{
+            useage.setText(Integer.toString(totalTime) + "초");
+        }
+
 
         //경고횟수 출력
         warning = (TextView)findViewById(R.id.warning_number);
@@ -101,28 +150,8 @@ public class MainActivity extends AppCompatActivity {
             posture.setTextColor(Color.parseColor("#C1432F"));
             posture.setTextSize(45);
         }
-
-        appData = getSharedPreferences("appData", MODE_PRIVATE);
-        appData.getString("MODE_SETTING","");
-        String DARK = appData.getString("MODE_SETTING", "");
-        switch (DARK){
-            case "LIGHT":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case "DARK":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case "DEFAULT":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                }
-                // 안드로이드 10 미만
-                else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                }
-                break;
-        }
     }
+
     //뒤로가기 눌렀을때 호출. 뒤로가기 두번으로 앱 종료 위함
     @Override
     public void onBackPressed(){

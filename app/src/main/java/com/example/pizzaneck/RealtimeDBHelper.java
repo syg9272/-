@@ -27,19 +27,24 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
                 + "seq INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "date DATE NOT NULL,"
                 + "time INTEGER NOT NULL);";
+        db.execSQL(sql);
 
+        sql = "CREATE TABLE if not exists using_time("
+                + "date DATE PRIMARY KEY,"
+                + "time INTEGER NOT NULL);";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //mytable자리 본인이 지정한 테이블 명으로 수정
         String sql = "DROP TABLE if exists forward_head_posture_time";
-
+        db.execSQL(sql);
+        sql = "DROP TABLE IF EXISTS using_time";
         db.execSQL(sql);
         onCreate(db);
     }
 
+    // 나쁜 자세 지속시간 insert
     void insertTime(SQLiteDatabase db, long time){
         ContentValues contentValues = new ContentValues();
 
@@ -60,6 +65,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    // 오늘 경고횟수 조회
     public int warningCount() {
         int count = 0;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -80,5 +86,72 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
 
         db.close();
         return sum;
+    }
+
+    // 오늘 총 사용시간 삽입
+    public void insertUsingTime(int time){
+        int table_time; //테이블에 들어있던 시간
+        ContentValues contentValues = new ContentValues();
+
+        //오늘 날짜
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT time FROM using_time WHERE date=(SELECT date('now', 'localtime'))", null);
+
+        if(cursor.getCount() == 0) {   // 오늘 날짜가 테이블에 없으면 insert
+            contentValues.put("date", format.format(date));
+            contentValues.put("time", time);
+            long result = db.insert("using_time", null, contentValues);
+
+            if(result == -1){
+                Log.d("##TOTAL TIME INSERT ", "Failed");
+            }
+            else{
+                Log.d("##TOTAL TIME INSERT ", "Success");
+            }
+        }
+        else {  // 오늘 날짜가 테이블에 있으면 더해서 update
+            cursor.moveToFirst();
+            table_time = cursor.getInt(0);
+            time += table_time;
+            Log.d("time", Integer.toString(time));
+            Log.d("table_time", Integer.toString(table_time));
+            String query = "UPDATE using_time SET time=" + time + " WHERE date= '" + format.format(date) + "'";
+            Log.d("QUERY", query);
+            try{
+                db.execSQL(query);
+                Log.d("##TOTAL TIME UPDATE", "SUCCESS");
+            } catch (Exception e){
+                Log.d("##TOTAL TIME UPDATE", "FAILED");
+                e.printStackTrace();
+            }
+        }
+        cursor.close();
+        db.close();
+    }
+
+    //오늘 사용시간 조회
+    public int getTotalTime(){
+        int result;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT time FROM using_time WHERE date=(SELECT date('now', 'localtime'))", null);
+
+        if(cursor == null){
+            cursor.close();
+            db.close();
+            return 0;
+        }
+        cursor.moveToFirst();
+        result = cursor.getInt(0);
+        Log.d("getTotalTime",Integer.toString(result));
+
+        cursor.close();
+        db.close();
+
+        return result;
     }
 }

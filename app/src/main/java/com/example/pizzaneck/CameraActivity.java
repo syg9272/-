@@ -167,6 +167,8 @@ public abstract class CameraActivity extends AppCompatActivity
 
   int flag = 0; // 0:good, 1:bad
 
+  long totalStartTime, totalEndTime; //사용시간
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
@@ -185,7 +187,9 @@ public abstract class CameraActivity extends AppCompatActivity
 
     getSetting(); // 애플리케이션 설정값 불러옴
 
-
+    if(totalStartTime == 0){  // 사용시간 카운트 시작
+      totalStartTime = System.currentTimeMillis();
+    }
 
 
 
@@ -781,6 +785,8 @@ public abstract class CameraActivity extends AppCompatActivity
       //설정버튼
       case R.id.setting:
         endAlarm();
+        totalEndTime = System.currentTimeMillis();
+        helper.insertUsingTime((int)(totalEndTime - totalStartTime)/1000);
         Intent intent = new Intent(getApplicationContext(), Setting.class);
         startActivity(intent);
     }
@@ -790,6 +796,8 @@ public abstract class CameraActivity extends AppCompatActivity
   @Override
   public void onBackPressed(){
     endAlarm();
+    totalEndTime = System.currentTimeMillis();
+    helper.insertUsingTime((int)(totalEndTime - totalStartTime)/1000);
     super.onBackPressed();
   }
 
