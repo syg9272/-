@@ -31,5 +31,6 @@
     <color name="graph_good_color">#EAE35E</color>
     <color name="graph_soso_color">#F7B237</color>
     <color name="graph_bad_color">#EA5A47</color>
+    <color name="graph_detail_txt">#FFFFFF</color>
 
 </resources>

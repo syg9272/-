@@ -41,5 +41,6 @@
     <color name="graph_good_color">#C4C423</color>
     <color name="graph_soso_color">#C47C4B</color>
     <color name="graph_bad_color">#C1432F</color>
+    <color name="graph_detail_txt">#3F3F3F</color>
 
 </resources>

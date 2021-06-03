@@ -307,17 +307,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -353,17 +345,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -400,17 +384,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -447,17 +423,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -493,17 +461,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -539,17 +499,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
 
@@ -586,17 +538,9 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
                                 android:text="00"
-                                android:textColor="@color/graph_text"
+                                android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/jalnan"
-                                android:text=" sec"
-                                android:textColor="@color/graph_data"
-                                android:textSize="12sp" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>

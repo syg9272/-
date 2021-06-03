@@ -52,7 +52,6 @@ public class Graph extends AppCompatActivity {
     TextView time[] = new TextView[7];
 
     private RealtimeDBHelper g_dbHelper;
-    private Graph.myDBHelper helper;
     private SQLiteDatabase db;
     private Cursor cursor;
 
@@ -64,40 +63,55 @@ public class Graph extends AppCompatActivity {
 
         g_dbHelper = new RealtimeDBHelper(Graph.this, "Realtime.db", null, 1);
 
-        //디비생성
-        helper = new myDBHelper(Graph.this);
-        db = helper.getWritableDatabase();
-        helper.onUpgrade(db, 1, 1);
 
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-19',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-20',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-21',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-22',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-23',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-24',10,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-25',20,30)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-26',30,40)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-27',20,30)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-28',20,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-29',25,30)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-30',30,10)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-05-31',50,50)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-06-01',30,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-06-02',30,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-06-03',30,20)");
-        db.execSQL("INSERT INTO Total_Graph values('2021-06-04',10,20)");
+        //디비생성
+        db = g_dbHelper.getWritableDatabase();
+        g_dbHelper.onUpgrade(db, 1, 1);
+
+        //forward_head_posture_time 임의 데이터
+        db.execSQL("INSERT INTO forward_head_posture_time values(1, '2021-05-19',30)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(2, '2021-05-20',20)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(3, '2021-05-21',40)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(4, '2021-05-22',50)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(5, '2021-05-23',85)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(6, '2021-05-24',65)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(7, '2021-05-25',44)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(8, '2021-05-26',28)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(9, '2021-05-27',15)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(10, '2021-05-28',36)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(11, '2021-05-29',78)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(12, '2021-05-30',90)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(13, '2021-05-31',25)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(14, '2021-06-01',70)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(15, '2021-06-02',50)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(16, '2021-06-03',65)");
+        db.execSQL("INSERT INTO forward_head_posture_time values(17, '2021-06-04',20)");
+
+        //using_time 임의 데이터
+        db.execSQL("INSERT INTO using_time values('2021-05-19',100)");
+        db.execSQL("INSERT INTO using_time values('2021-05-20',100)");
+        db.execSQL("INSERT INTO using_time values('2021-05-21',100)");
+        db.execSQL("INSERT INTO using_time values('2021-05-22',100)");
+        db.execSQL("INSERT INTO using_time values('2021-05-23',120)");
+        db.execSQL("INSERT INTO using_time values('2021-05-24',140)");
+        db.execSQL("INSERT INTO using_time values('2021-05-25',180)");
+        db.execSQL("INSERT INTO using_time values('2021-05-26',152)");
+        db.execSQL("INSERT INTO using_time values('2021-05-27',135)");
+        db.execSQL("INSERT INTO using_time values('2021-05-28',147)");
+        db.execSQL("INSERT INTO using_time values('2021-05-29',145)");
+        db.execSQL("INSERT INTO using_time values('2021-05-30',200)");
+        db.execSQL("INSERT INTO using_time values('2021-05-31',105)");
+        db.execSQL("INSERT INTO using_time values('2021-06-01',200)");
+        db.execSQL("INSERT INTO using_time values('2021-06-02',124)");
+        db.execSQL("INSERT INTO using_time values('2021-06-03',170)");
+        db.execSQL("INSERT INTO using_time values('2021-06-04',50)");
+
 
         db.close();
-        //GraphDBHelper helper;
-        //SQLiteDatabase db;
-        //helper = new GraphDBHelper(Graph.this, "Graph.db", null, 1);
-
-        //db = helper.getWritableDatabase();
-        //helper.onCreate(db);
 
         BarChart barChart = findViewById(R.id.graph_total);
 
-        //일주일 전 날짜 - 오늘 날짜 0000.00.00 - 0000.00.00
+        //일주일 전 날짜 - 오늘 날짜 (0000.00.00 - 0000.00.00)
         //일주일 전 날짜
         week = (TextView)findViewById(R.id.graph_week);
         Calendar calendar = Calendar.getInstance();
@@ -115,8 +129,8 @@ public class Graph extends AppCompatActivity {
         String day_str = format02.format(day);
         today.setText(day_str);
 
-        //자세히보기 내용 중 날짜(일주일 전부터 오늘 날짜까지)
-        //D-7
+        //자세히보기 내용 >> 일주일 전부터 오늘까지의 날짜 (형식 ex.) 2021.06.03 (목)
+        //D-6
         first = (TextView)findViewById(R.id.graph_first_date);
         Calendar calendar_first = Calendar.getInstance();
         calendar_first.add(Calendar.DAY_OF_MONTH,-6);
@@ -125,7 +139,7 @@ public class Graph extends AppCompatActivity {
         String date_first_str = format_first.format(date_first);
         first.setText(date_first_str);
 
-        //D-6
+        //D-5
         second = (TextView)findViewById(R.id.graph_second_date);
         Calendar calendar_second = Calendar.getInstance();
         calendar_second.add(Calendar.DAY_OF_MONTH,-5);
@@ -134,7 +148,7 @@ public class Graph extends AppCompatActivity {
         String date_second_str = format_second.format(date_second);
         second.setText(date_second_str);
 
-        //D-5
+        //D-4
         third = (TextView)findViewById(R.id.graph_third_date);
         Calendar calendar_third = Calendar.getInstance();
         calendar_third.add(Calendar.DAY_OF_MONTH,-4);
@@ -143,7 +157,7 @@ public class Graph extends AppCompatActivity {
         String date_third_str = format_third.format(date_third);
         third.setText(date_third_str);
 
-        //D-4
+        //D-3
         fourth = (TextView)findViewById(R.id.graph_fourth_date);
         Calendar calendar_fourth = Calendar.getInstance();
         calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
@@ -152,7 +166,7 @@ public class Graph extends AppCompatActivity {
         String date_fourth_str = format_fourth.format(date_fourth);
         fourth.setText(date_fourth_str);
 
-        //D-3
+        //D-2
         fifth = (TextView)findViewById(R.id.graph_fifth_date);
         Calendar calendar_fifth = Calendar.getInstance();
         calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
@@ -161,7 +175,7 @@ public class Graph extends AppCompatActivity {
         String date_fifth_str = format_fifth.format(date_fifth);
         fifth.setText(date_fifth_str);
 
-        //D-2
+        //D-1
         sixth = (TextView)findViewById(R.id.graph_sixth_date);
         Calendar calendar_sixth = Calendar.getInstance();
         calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
@@ -184,7 +198,7 @@ public class Graph extends AppCompatActivity {
         SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
         String today_format = today_pattern.format(day_seventh);
 
-        // 나쁜자세 지속시간 자세히 보기
+        // 자세히보기 내용 >> 나쁜자세 지속시간 (형식 ex.) 20 sec
         time[0] = (TextView)findViewById(R.id.first_date_txt);
         time[1] = (TextView)findViewById(R.id.second_date_txt);
         time[2] = (TextView)findViewById(R.id.third_date_txt);
@@ -193,28 +207,50 @@ public class Graph extends AppCompatActivity {
         time[5] = (TextView)findViewById(R.id.sixth_date_txt);
         time[6] = (TextView)findViewById(R.id.seventh_date_txt);
 
-        db = helper.getReadableDatabase();
+        db = g_dbHelper.getReadableDatabase();
         ArrayList<BarEntry> visitors = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM Total_Graph " +
-                "WHERE stat_date " +
-                "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'",null);
 
+        Cursor cursor = db.rawQuery("SELECT forward_head_posture_time.seq, using_time.date, " +
+                "forward_head_posture_time.time, using_time.time " +
+                "FROM forward_head_posture_time INNER JOIN using_time " +
+                "ON forward_head_posture_time.date = using_time.date " +
+                "WHERE forward_head_posture_time.date " +
+                "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'", null);
+
+        // 그래프에 값 넣어줌 (좋은 자세 지속 시간, 나쁜 자세 지속 시간)
         int i = 0;
         int x = 17;
 
+        int good_time;
         int good_time_total = 0;
         int bad_time_total = 0;
 
         while(cursor.moveToNext()){
-            good_time_total += cursor.getInt(1);
+            good_time = cursor.getInt(3) - cursor.getInt(2);
+            good_time_total += good_time;
             bad_time_total += cursor.getInt(2);
 
-            visitors.add(new BarEntry(x,cursor.getInt(1)));
+            visitors.add(new BarEntry(x,good_time));
             x++;
             visitors.add(new BarEntry(x,cursor.getInt(2)));
             x+=2;
 
-            time[i].setText(cursor.getString(2));
+            if(cursor.getInt(2) >= 60){    // 1분 이상
+            int minutes;
+            int seconds;
+                if(cursor.getInt(2) >= 3600){  //1시간 이상
+                    int hours = cursor.getInt(2) / 3600;
+                    minutes = cursor.getInt(2) % 3600;
+                    seconds = minutes % 60;
+                    minutes = minutes / 60;
+                    time[i].setText(Integer.toString(hours) + "hr " + Integer.toString(minutes) + "min " + Integer.toString(seconds) + "sec");
+                }
+                minutes = cursor.getInt(2) / 60;
+                seconds = cursor.getInt(2) % 60;
+                time[i].setText(Integer.toString(minutes) + "min " + Integer.toString(seconds) + "sec");
+            } else {
+                time[i].setText(cursor.getString(2) + "sec");
+            }
             i++;
         }
 
@@ -260,6 +296,7 @@ public class Graph extends AppCompatActivity {
         yRAxis.setDrawGridLines(false);
 
         //이번주 당신의 자세는
+        //총 경고 횟수(3단위)의 값이 커질 때마다 등급 하락
         evaluation = (TextView)findViewById(R.id.graph_evaluation);
         int sum = g_dbHelper.warning_Total_Count_week();
         if(sum < 3){
@@ -322,67 +359,40 @@ public class Graph extends AppCompatActivity {
 
         if((sum_last_week - sum) > 6){
             ImageView imageView = findViewById(R.id.graph_image_Excellent);
-            comparison.setText("아주 좋아졌어요 ");
+            comparison.setText("아주 좋아졌어요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
         else if((sum_last_week - sum) <= 6 && (sum_last_week - sum) > 0){
             ImageView imageView = findViewById(R.id.graph_image_Great);
-            comparison.setText("좋아지고 있네요 ");
+            comparison.setText("좋아지고 있네요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
         else if((sum_last_week - sum) == 0){
             ImageView imageView = findViewById(R.id.graph_image_Good);
-            comparison.setText("똑같아요 ");
+            comparison.setText("똑같아요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
         else if((sum_last_week - sum) >= -6 && (sum_last_week - sum) < 0){
             ImageView imageView = findViewById(R.id.graph_image_Soso);
-            comparison.setText("조금 더 노력하세요 ");
+            comparison.setText("조금 더 노력하세요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_soso_color));
         }
         else {
             ImageView imageView = findViewById(R.id.graph_image_Bad);
-            comparison.setText("노력이 필요합니다 ");
+            comparison.setText("노력이 필요합니다  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_bad_color));
         }
     }
 
-
-
-    public class myDBHelper extends SQLiteOpenHelper {
-        public myDBHelper(Context context) {
-            super(context, "Graph", null, 1);
-        }
-
-        private static final int DB_VERSION = 1;
-        private static final String DB_NAME = "Graph.db";
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS Total_Graph ("
-                    + "stat_date DATE PRIMARY KEY,"
-                    + "good_time INTEGER NOT NULL,"
-                    + "wrong_time INTEGER NOT NULL)");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS Total_Graph");
-            onCreate(db);
-
-        }
-    }
-
-
+    //자세히보기 버튼 클릭시 이벤트 처리
     public Button btn1;
     public boolean flag;
 
-    //자세히보기 버튼 클릭시 이벤트 처리
     private void changeView(int index){
         TableLayout tableLayout = findViewById(R.id.graph_table);
         switch (index) {
