@@ -46,7 +46,7 @@ public class Graph extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
-    TextView today, week, first, second, third, fourth, fifth, sixth, seventh, warning_count, evaluation, bad_percent;
+    TextView today, week, first, second, third, fourth, fifth, sixth, seventh, warning_count, evaluation, bad_percent, comparison;
     TextView time[] = new TextView[7];
 
     private RealtimeDBHelper g_dbHelper;
@@ -67,6 +67,11 @@ public class Graph extends AppCompatActivity {
         db = helper.getWritableDatabase();
         helper.onUpgrade(db, 1, 1);
 
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-19',10,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-20',10,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-21',10,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-22',10,20)");
+        db.execSQL("INSERT INTO Total_Graph values('2021-05-23',10,20)");
         db.execSQL("INSERT INTO Total_Graph values('2021-05-24',10,20)");
         db.execSQL("INSERT INTO Total_Graph values('2021-05-25',20,30)");
         db.execSQL("INSERT INTO Total_Graph values('2021-05-26',30,40)");
@@ -78,7 +83,8 @@ public class Graph extends AppCompatActivity {
         db.execSQL("INSERT INTO Total_Graph values('2021-06-01',30,20)");
         db.execSQL("INSERT INTO Total_Graph values('2021-06-02',30,20)");
         db.execSQL("INSERT INTO Total_Graph values('2021-06-03',30,20)");
-        //
+        db.execSQL("INSERT INTO Total_Graph values('2021-06-04',10,20)");
+
         db.close();
         //GraphDBHelper helper;
         //SQLiteDatabase db;
@@ -171,8 +177,6 @@ public class Graph extends AppCompatActivity {
         seventh.setText(day_seventh_str);
 
 
-        //임의의 값 설정
-
         SimpleDateFormat week_ago_pattern = new SimpleDateFormat("yyyy-MM-dd");
         String week_ago_format = week_ago_pattern.format(date);
         SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
@@ -210,7 +214,6 @@ public class Graph extends AppCompatActivity {
 
             time[i].setText(cursor.getString(2));
             i++;
-
         }
 
         db.close();
@@ -256,7 +259,7 @@ public class Graph extends AppCompatActivity {
 
         //이번주 당신의 자세는
         evaluation = (TextView)findViewById(R.id.graph_evaluation);
-        int sum = g_dbHelper.warning_Total_Count();
+        int sum = g_dbHelper.warning_Total_Count_week();
         if(sum < 3){
             evaluation.setText("Excellent");
         }
@@ -304,6 +307,27 @@ public class Graph extends AppCompatActivity {
         String result = String.format("%.2f", percent);
         bad_percent = (TextView)findViewById(R.id.percent);
         bad_percent.setText(result + "%");
+
+
+        //저번주에 비해
+        comparison = (TextView)findViewById(R.id.grade_comparison);
+        int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
+
+        if((sum_last_week - sum) > 6){
+            comparison.setText("노력이 필요합니다.");
+        }
+        else if((sum_last_week - sum) <= 6 && (sum_last_week - sum) > 0){
+            comparison.setText("조금 더 노력하세요");
+        }
+        else if((sum_last_week - sum) == 0){
+            comparison.setText("똑같아요");
+        }
+        else if((sum_last_week - sum) >= -6 && (sum_last_week - sum) < 0){
+            comparison.setText("좋아지고 있네요");
+        }
+        else {
+            comparison.setText("아주 좋아졌어요!");
+        }
 
 
 

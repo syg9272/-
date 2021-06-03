@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.lang.String;
 
@@ -75,14 +76,60 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int warning_Total_Count() {
+    // 이번주 총 알림 횟수
+    public int warning_Total_Count_week() {
+
+        //이번주 첫 날
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,-6);
+        Date date = calendar.getTime();
+        SimpleDateFormat week_ago_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String week_ago_format = week_ago_pattern.format(date);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time " +
+                "WHERE date " +
+                "BETWEEN '" + week_ago_format + "' AND '" + date + "'", null);
+
         int count = 0;
         int sum = 0;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time WHERE date=(SELECT date('now', 'localtime'))", null);
+        while(cursor.moveToNext()){
+            count = cursor.getCount();
+            sum += count;
+        }
 
-        count = cursor.getCount();
-        sum += count;
+        db.close();
+        return sum;
+    }
+
+    //저번주 총 알림 횟수
+    public int warning_Total_Count_last_week() {
+
+        //저번주 첫 날
+        Calendar calendar_last_week_first = Calendar.getInstance();
+        calendar_last_week_first.add(Calendar.DAY_OF_MONTH,-13);
+        Date date_last_week_first = calendar_last_week_first.getTime();
+        SimpleDateFormat last_week_first_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String last_week_first_format = last_week_first_pattern.format(date_last_week_first);
+
+        //저번주 마지막 날
+        Calendar calendar_last_week_seventh = Calendar.getInstance();
+        calendar_last_week_seventh.add(Calendar.DAY_OF_MONTH,-13);
+        Date date_last_week_seventh = calendar_last_week_seventh.getTime();
+        SimpleDateFormat last_week_seventh_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String last_week_seventh_format = last_week_seventh_pattern.format(date_last_week_seventh);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time " +
+                "WHERE date " +
+                "BETWEEN '" + last_week_first_format + "' AND '" + last_week_seventh_format + "'", null);
+
+        int count = 0;
+        int sum = 0;
+        while(cursor.moveToNext()){
+            count = cursor.getCount();
+            sum += count;
+        }
 
         db.close();
         return sum;
