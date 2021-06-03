@@ -189,11 +189,11 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
 
         if(cursor.getCount() > 0){
             result = cursor.getInt(0);
-            Log.d("getTotalTime",Integer.toString(result));
+
         }
         cursor.close();
         db.close();
-        Log.d("getTotalTime","0");
+        Log.d("getTotalTime",Integer.toString(result));
         return 0;
     }
 }
