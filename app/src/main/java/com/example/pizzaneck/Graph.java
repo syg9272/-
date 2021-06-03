@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -119,7 +121,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_first = Calendar.getInstance();
         calendar_first.add(Calendar.DAY_OF_MONTH,-6);
         Date date_first = calendar_first.getTime();
-        SimpleDateFormat format_first = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_first = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_first_str = format_first.format(date_first);
         first.setText(date_first_str);
 
@@ -128,7 +130,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_second = Calendar.getInstance();
         calendar_second.add(Calendar.DAY_OF_MONTH,-5);
         Date date_second = calendar_second.getTime();
-        SimpleDateFormat format_second = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_second = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_second_str = format_second.format(date_second);
         second.setText(date_second_str);
 
@@ -137,7 +139,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_third = Calendar.getInstance();
         calendar_third.add(Calendar.DAY_OF_MONTH,-4);
         Date date_third = calendar_third.getTime();
-        SimpleDateFormat format_third = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_third = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_third_str = format_third.format(date_third);
         third.setText(date_third_str);
 
@@ -146,7 +148,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_fourth = Calendar.getInstance();
         calendar_fourth.add(Calendar.DAY_OF_MONTH,-3);
         Date date_fourth = calendar_fourth.getTime();
-        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_fourth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_fourth_str = format_fourth.format(date_fourth);
         fourth.setText(date_fourth_str);
 
@@ -155,7 +157,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_fifth = Calendar.getInstance();
         calendar_fifth.add(Calendar.DAY_OF_MONTH,-2);
         Date date_fifth = calendar_fifth.getTime();
-        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_fifth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_fifth_str = format_fifth.format(date_fifth);
         fifth.setText(date_fifth_str);
 
@@ -164,7 +166,7 @@ public class Graph extends AppCompatActivity {
         Calendar calendar_sixth = Calendar.getInstance();
         calendar_sixth.add(Calendar.DAY_OF_MONTH,-1);
         Date date_sixth = calendar_sixth.getTime();
-        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_sixth = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String date_sixth_str = format_sixth.format(date_sixth);
         sixth.setText(date_sixth_str);
 
@@ -172,7 +174,7 @@ public class Graph extends AppCompatActivity {
         seventh = (TextView)findViewById(R.id.graph_seventh_date);
         long now_seventh = System.currentTimeMillis();
         Date day_seventh = new Date(now_seventh);
-        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy-MM-dd (EE)", Locale.KOREAN);
+        SimpleDateFormat format_seventh = new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.KOREAN);
         String day_seventh_str = format_seventh.format(day_seventh);
         seventh.setText(day_seventh_str);
 
@@ -262,18 +264,23 @@ public class Graph extends AppCompatActivity {
         int sum = g_dbHelper.warning_Total_Count_week();
         if(sum < 3){
             evaluation.setText("Excellent");
+            evaluation.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
         else if(sum >= 3 && sum < 6){
             evaluation.setText("Great");
+            evaluation.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
         else if(sum >= 6 && sum < 9){
             evaluation.setText("Good");
+            evaluation.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
         else if(sum >= 9 && sum < 12){
             evaluation.setText("So so");
+            evaluation.setTextColor(getResources().getColor(R.color.graph_soso_color));
         }
         else {
             evaluation.setText("Bad");
+            evaluation.setTextColor(getResources().getColor(R.color.graph_bad_color));
         }
 
         //총 알림 횟수는
@@ -314,23 +321,35 @@ public class Graph extends AppCompatActivity {
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
 
         if((sum_last_week - sum) > 6){
-            comparison.setText("노력이 필요합니다.");
+            ImageView imageView = findViewById(R.id.graph_image_Excellent);
+            comparison.setText("아주 좋아졌어요 ");
+            imageView.setVisibility(View.VISIBLE);
+            comparison.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
         else if((sum_last_week - sum) <= 6 && (sum_last_week - sum) > 0){
-            comparison.setText("조금 더 노력하세요");
+            ImageView imageView = findViewById(R.id.graph_image_Great);
+            comparison.setText("좋아지고 있네요 ");
+            imageView.setVisibility(View.VISIBLE);
+            comparison.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
         else if((sum_last_week - sum) == 0){
-            comparison.setText("똑같아요");
+            ImageView imageView = findViewById(R.id.graph_image_Good);
+            comparison.setText("똑같아요 ");
+            imageView.setVisibility(View.VISIBLE);
+            comparison.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
         else if((sum_last_week - sum) >= -6 && (sum_last_week - sum) < 0){
-            comparison.setText("좋아지고 있네요");
+            ImageView imageView = findViewById(R.id.graph_image_Soso);
+            comparison.setText("조금 더 노력하세요 ");
+            imageView.setVisibility(View.VISIBLE);
+            comparison.setTextColor(getResources().getColor(R.color.graph_soso_color));
         }
         else {
-            comparison.setText("아주 좋아졌어요!");
+            ImageView imageView = findViewById(R.id.graph_image_Bad);
+            comparison.setText("노력이 필요합니다 ");
+            imageView.setVisibility(View.VISIBLE);
+            comparison.setTextColor(getResources().getColor(R.color.graph_bad_color));
         }
-
-
-
     }
 
 

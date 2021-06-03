@@ -26,5 +26,10 @@
     <color name= "graph_legend_bad">#FF6D6D</color>
     <color name="graph_value">#FFFFFF</color>
     <color name="edge">#FFFFFF</color>
+    <color name="graph_excellent_color">#63BF45</color>
+    <color name="graph_great_color">#ACC96B</color>
+    <color name="graph_good_color">#EAE35E</color>
+    <color name="graph_soso_color">#F7B237</color>
+    <color name="graph_bad_color">#EA5A47</color>
 
 </resources>

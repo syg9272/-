@@ -114,7 +114,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
 
         //저번주 마지막 날
         Calendar calendar_last_week_seventh = Calendar.getInstance();
-        calendar_last_week_seventh.add(Calendar.DAY_OF_MONTH,-13);
+        calendar_last_week_seventh.add(Calendar.DAY_OF_MONTH,-7);
         Date date_last_week_seventh = calendar_last_week_seventh.getTime();
         SimpleDateFormat last_week_seventh_pattern = new SimpleDateFormat("yyyy-MM-dd");
         String last_week_seventh_format = last_week_seventh_pattern.format(date_last_week_seventh);

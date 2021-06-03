@@ -681,8 +681,48 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jalnan"
                         android:text=""
-                        android:textColor="#9F0E0E"
                         android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/graph_image_Excellent"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_verygood"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/graph_image_Great"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_good"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/graph_image_Good"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_soso"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/graph_image_Soso"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_bad"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/graph_image_Bad"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/graph_verybad"
+                        android:visibility="gone"/>
+
                 </LinearLayout>
 
                 <!--밑줄-->
