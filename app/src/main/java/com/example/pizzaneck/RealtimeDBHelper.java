@@ -182,23 +182,18 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
 
     //오늘 사용시간 조회
     public int getTotalTime(){
-        int result;
+        int result = 0;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT time FROM using_time WHERE date=(SELECT date('now', 'localtime'))", null);
 
-        if(cursor == null){
-            cursor.close();
-            db.close();
-            return 0;
+        if(cursor.getCount() > 0){
+            result = cursor.getInt(0);
+            Log.d("getTotalTime",Integer.toString(result));
         }
-        cursor.moveToFirst();
-        result = cursor.getInt(0);
-        Log.d("getTotalTime",Integer.toString(result));
-
         cursor.close();
         db.close();
-
-        return result;
+        Log.d("getTotalTime","0");
+        return 0;
     }
 }
