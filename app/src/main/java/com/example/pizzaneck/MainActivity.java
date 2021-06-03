@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextView today, warning, posture, useage;
 
     private RealtimeDBHelper r_dbHelper;
+    private SQLiteDatabase db;
     private SharedPreferences appData;
     private RadioGroup radioGroup;
     @Override
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         byDate_Btn = (LinearLayout)findViewById(R.id.linearLayout_byDate);
 
         r_dbHelper = new RealtimeDBHelper(MainActivity.this, "Realtime.db", null, 1);
+        db = r_dbHelper.getWritableDatabase();
+        r_dbHelper.onCreate(db);
 
         stretching_btn.setOnClickListener(new View.OnClickListener() {
             @Override
