@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,48 +68,48 @@ public class Graph extends AppCompatActivity {
 
         //디비생성
         db = g_dbHelper.getWritableDatabase();
-        g_dbHelper.onUpgrade(db, 1, 1);
+        g_dbHelper.onCreate(db);
 
         //forward_head_posture_time 임의 데이터
-        db.execSQL("INSERT INTO forward_head_posture_time values(1, '2021-05-19',30)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(2, '2021-05-20',20)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(3, '2021-05-21',40)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(4, '2021-05-22',50)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(5, '2021-05-23',85)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(6, '2021-05-24',65)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(7, '2021-05-25',44)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(8, '2021-05-26',28)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(9, '2021-05-27',15)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(10, '2021-05-28',36)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(11, '2021-05-29',78)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(12, '2021-05-30',90)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(13, '2021-05-31',25)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(14, '2021-06-01',70)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(15, '2021-06-02',50)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(16, '2021-06-03',65)");
-        db.execSQL("INSERT INTO forward_head_posture_time values(17, '2021-06-04',20)");
-
-        //using_time 임의 데이터
-        db.execSQL("INSERT INTO using_time values('2021-05-19',100)");
-        db.execSQL("INSERT INTO using_time values('2021-05-20',100)");
-        db.execSQL("INSERT INTO using_time values('2021-05-21',100)");
-        db.execSQL("INSERT INTO using_time values('2021-05-22',100)");
-        db.execSQL("INSERT INTO using_time values('2021-05-23',120)");
-        db.execSQL("INSERT INTO using_time values('2021-05-24',140)");
-        db.execSQL("INSERT INTO using_time values('2021-05-25',180)");
-        db.execSQL("INSERT INTO using_time values('2021-05-26',152)");
-        db.execSQL("INSERT INTO using_time values('2021-05-27',135)");
-        db.execSQL("INSERT INTO using_time values('2021-05-28',147)");
-        db.execSQL("INSERT INTO using_time values('2021-05-29',145)");
-        db.execSQL("INSERT INTO using_time values('2021-05-30',200)");
-        db.execSQL("INSERT INTO using_time values('2021-05-31',105)");
-        db.execSQL("INSERT INTO using_time values('2021-06-01',200)");
-        db.execSQL("INSERT INTO using_time values('2021-06-02',124)");
-        db.execSQL("INSERT INTO using_time values('2021-06-03',170)");
-        db.execSQL("INSERT INTO using_time values('2021-06-04',50)");
-
+//        g_dbHelper.insertBadTime("2021-05-19",30);
+//        g_dbHelper.insertBadTime("2021-05-20",30);
+//        g_dbHelper.insertBadTime("2021-05-21",30);
+//        g_dbHelper.insertBadTime("2021-05-22",30);
+//        g_dbHelper.insertBadTime("2021-05-23",30);
+//        g_dbHelper.insertBadTime("2021-05-24",30);
+//        g_dbHelper.insertBadTime("2021-05-25",30);
+//        g_dbHelper.insertBadTime("2021-05-26",30);
+//        g_dbHelper.insertBadTime("2021-05-27",30);
+//        g_dbHelper.insertBadTime("2021-05-28",30);
+//        g_dbHelper.insertBadTime("2021-05-29",30);
+//        g_dbHelper.insertBadTime("2021-05-30",30);
+//        g_dbHelper.insertBadTime("2021-05-31",30);
+//        g_dbHelper.insertBadTime("2021-06-01",30);
+//        g_dbHelper.insertBadTime("2021-06-02",30);
+//        g_dbHelper.insertBadTime("2021-06-03",30);
+//        g_dbHelper.insertBadTime("2021-06-04",30);
+//
+//        //using_time 임의 데이터
+//        g_dbHelper.insertUsingTime(100, "2021-05-19");
+//        g_dbHelper.insertUsingTime(100, "2021-05-20");
+//        g_dbHelper.insertUsingTime(100, "2021-05-21");
+//        g_dbHelper.insertUsingTime(100, "2021-05-22");
+//        g_dbHelper.insertUsingTime(120, "2021-05-23");
+//        g_dbHelper.insertUsingTime(140, "2021-05-24");
+//        g_dbHelper.insertUsingTime(180, "2021-05-25");
+//        g_dbHelper.insertUsingTime(152, "2021-05-26");
+//        g_dbHelper.insertUsingTime(135, "2021-05-27");
+//        g_dbHelper.insertUsingTime(147, "2021-05-28");
+//        g_dbHelper.insertUsingTime(145, "2021-05-29");
+//        g_dbHelper.insertUsingTime(200, "2021-05-30");
+//        g_dbHelper.insertUsingTime(105, "2021-05-31");
+//        g_dbHelper.insertUsingTime(200, "2021-06-01");
+//        g_dbHelper.insertUsingTime(124, "2021-06-02");
+//        g_dbHelper.insertUsingTime(170, "2021-06-03");
+//        g_dbHelper.insertUsingTime(50, "2021-06-04");
 
         db.close();
+
 
         BarChart barChart = findViewById(R.id.graph_total);
 
@@ -193,8 +195,20 @@ public class Graph extends AppCompatActivity {
         seventh.setText(day_seventh_str);
 
 
-        SimpleDateFormat week_ago_pattern = new SimpleDateFormat("yyyy-MM-dd");
-        String week_ago_format = week_ago_pattern.format(date);
+
+
+        SimpleDateFormat day1P = new SimpleDateFormat("yyyy-MM-dd");
+        String day1 = day1P.format(date_first);
+        SimpleDateFormat day2P = new SimpleDateFormat("yyyy-MM-dd");
+        String day2 = day2P.format(date_second);
+        SimpleDateFormat day3P = new SimpleDateFormat("yyyy-MM-dd");
+        String day3 = day3P.format(date_third);
+        SimpleDateFormat day4P = new SimpleDateFormat("yyyy-MM-dd");
+        String day4 = day4P.format(date_fourth);
+        SimpleDateFormat day5P = new SimpleDateFormat("yyyy-MM-dd");
+        String day5 = day5P.format(date_fifth);
+        SimpleDateFormat day6P = new SimpleDateFormat("yyyy-MM-dd");
+        String day6 = day6P.format(date_sixth);
         SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
         String today_format = today_pattern.format(day_seventh);
 
@@ -215,43 +229,64 @@ public class Graph extends AppCompatActivity {
                 "FROM forward_head_posture_time INNER JOIN using_time " +
                 "ON forward_head_posture_time.date = using_time.date " +
                 "WHERE forward_head_posture_time.date " +
-                "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'", null);
+                "BETWEEN '" + day1 + "' AND '" + today_format + "'", null);
 
         // 그래프에 값 넣어줌 (좋은 자세 지속 시간, 나쁜 자세 지속 시간)
-        int i = 0;
-        int x = 17;
+
 
         int good_time;
+        int using_time_total = 0;
         int good_time_total = 0;
         int bad_time_total = 0;
 
-        while(cursor.moveToNext()){
-            good_time = cursor.getInt(3) - cursor.getInt(2);
-            good_time_total += good_time;
-            bad_time_total += cursor.getInt(2);
+        ArrayList<String> date_string = new ArrayList<>();
+        date_string.add(day1);
+        date_string.add(day2);
+        date_string.add(day3);
+        date_string.add(day4);
+        date_string.add(day5);
+        date_string.add(day6);
+        date_string.add(today_format);
 
-            visitors.add(new BarEntry(x,good_time));
+        //cursor 의 데이터를 담아둘 int 배열 0번째가 bad_time, 1번째가 using_time
+        int[][] DB_Data = new int[7][2];
+
+        while(cursor.moveToNext()) {
+            //bad_time을 날짜에 맞춰서 넣어줌
+            DB_Data[date_string.indexOf(cursor.getString(1))][0] += Integer.parseInt(cursor.getString(2));
+            //using_time을 날짜에 맞춰서 넣어줌
+            if (DB_Data[date_string.indexOf(cursor.getString(1))][1] == 0) {
+                DB_Data[date_string.indexOf(cursor.getString(1))][1] = Integer.parseInt(cursor.getString(3));
+            }
+        }
+
+        int x = 17;
+        for(int i=0; i<7; i++){
+            //good time 입력
+            visitors.add(new BarEntry(x,DB_Data[i][1]-DB_Data[i][0]));
             x++;
-            visitors.add(new BarEntry(x,cursor.getInt(2)));
+            //bad time 입력
+            visitors.add(new BarEntry(x,DB_Data[i][0]));
             x+=2;
 
-            if(cursor.getInt(2) >= 60){    // 1분 이상
-            int minutes;
-            int seconds;
-                if(cursor.getInt(2) >= 3600){  //1시간 이상
-                    int hours = cursor.getInt(2) / 3600;
-                    minutes = cursor.getInt(2) % 3600;
+            if(DB_Data[i][0] >= 60){    // 1분 이상
+                int minutes;
+                int seconds;
+                if(DB_Data[i][0] >= 3600){  //1시간 이상
+                    int hours = DB_Data[i][0] / 3600;
+                    minutes = DB_Data[i][0] % 3600;
                     seconds = minutes % 60;
                     minutes = minutes / 60;
                     time[i].setText(Integer.toString(hours) + "hr " + Integer.toString(minutes) + "min " + Integer.toString(seconds) + "sec");
                 }
-                minutes = cursor.getInt(2) / 60;
-                seconds = cursor.getInt(2) % 60;
+                minutes = DB_Data[i][0] / 60;
+                seconds = DB_Data[i][0] % 60;
                 time[i].setText(Integer.toString(minutes) + "min " + Integer.toString(seconds) + "sec");
             } else {
-                time[i].setText(cursor.getString(2) + "sec");
+                time[i].setText(DB_Data[i][0] + "sec");
             }
-            i++;
+            bad_time_total += DB_Data[i][0];
+            good_time_total += DB_Data[i][1] - DB_Data[i][0];
         }
 
         db.close();
@@ -388,6 +423,7 @@ public class Graph extends AppCompatActivity {
             comparison.setTextColor(getResources().getColor(R.color.graph_bad_color));
         }
     }
+
 
     //자세히보기 버튼 클릭시 이벤트 처리
     public Button btn1;
