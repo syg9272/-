@@ -262,7 +262,8 @@ public class Graph extends AppCompatActivity {
         barChart.getDescription().setEnabled(false); //차트 설명 비활성화
         barChart.setFitBars(true); //차트 비율 활성화
         barChart.setData(barData);
-        barChart.getAxisLeft().setLabelCount(7, true);
+        barChart.getAxisLeft().setLabelCount(7, false);
+        barChart.setTouchEnabled(false); //차트 터치 막기
 
         //X축 속성
         XAxis xAxis = barChart.getXAxis();
@@ -277,6 +278,9 @@ public class Graph extends AppCompatActivity {
         YAxis yLAxis = barChart.getAxisLeft();
         yLAxis.setTextColor(getResources().getColor(R.color.main_color)); //Y축 레이블 색상
         yLAxis.setGridColor(getResources().getColor(R.color.main_color)); //Y축 그리드 색상
+        yLAxis.setDrawLabels(true);
+        yLAxis.setDrawZeroLine(true);
+        yLAxis.setDrawZeroLine(true);
 
         //오른쪽 y축 레이블 삭제
         YAxis yRAxis = barChart.getAxisRight();
