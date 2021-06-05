@@ -96,7 +96,7 @@
                 android:id="@+id/textView_useage_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0초"
+                android:text="2분 58초"
                 android:textColor="@color/color_000000"
                 android:textSize="15sp"/>
         </LinearLayout>
