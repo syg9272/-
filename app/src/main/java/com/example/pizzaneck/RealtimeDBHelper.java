@@ -82,21 +82,22 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         //이번주 첫 날
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH,-6);
-        Date date = calendar.getTime();
+        Date week_ago = calendar.getTime();
         SimpleDateFormat week_ago_pattern = new SimpleDateFormat("yyyy-MM-dd");
-        String week_ago_format = week_ago_pattern.format(date);
+        String week_ago_format = week_ago_pattern.format(week_ago);
+
+        long today = System.currentTimeMillis();
+        Date date = new Date(today);
+        SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
+        String today_format = today_pattern.format(date);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM forward_head_posture_time " +
                 "WHERE date " +
-                "BETWEEN '" + week_ago_format + "' AND '" + date + "'", null);
+                "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'", null);
 
-        int count = 0;
         int sum = 0;
-        while(cursor.moveToNext()){
-            count = cursor.getCount();
-            sum += count;
-        }
+        sum = cursor.getCount();
 
         db.close();
         return sum;

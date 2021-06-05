@@ -195,8 +195,6 @@ public class Graph extends AppCompatActivity {
         seventh.setText(day_seventh_str);
 
 
-
-
         SimpleDateFormat day1P = new SimpleDateFormat("yyyy-MM-dd");
         String day1 = day1P.format(date_first);
         SimpleDateFormat day2P = new SimpleDateFormat("yyyy-MM-dd");
@@ -357,7 +355,7 @@ public class Graph extends AppCompatActivity {
 
         //총 알림 횟수는
         warning_count = (TextView)findViewById(R.id.graph_count);
-        warning_count.setText(Integer.toString(sum) + "회");
+        warning_count.setText(sum + "회");
 
         //자세히보기 버튼
         btn1 = (Button) findViewById(R.id.graph_detail);
