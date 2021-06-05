@@ -351,7 +351,11 @@ public class Graph extends AppCompatActivity {
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
         int grade_result = sum_last_week - sum;
 
-        if(grade_result > 9){
+        if(sum_last_week == 0){
+            comparison.setText("이런, 지난주 데이터가 없어요..");
+            comparison.setTextColor(getResources().getColor(R.color.OnBackground));
+        }
+        else if(grade_result > 9){
             ImageView imageView = findViewById(R.id.graph_image_Excellent);
             comparison.setText("아주 좋아졌어요  ");
             imageView.setVisibility(View.VISIBLE);
