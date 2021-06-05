@@ -344,7 +344,7 @@ public class Graph extends AppCompatActivity {
         String result = String.format("%.2f", percent);
         bad_percent = (TextView)findViewById(R.id.percent);
         bad_percent.setText(result + "%");
-        
+
         //저번주에 비해
         comparison = (TextView)findViewById(R.id.grade_comparison);
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
