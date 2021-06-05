@@ -2,15 +2,13 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -233,7 +231,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal"
-                    android:gravity="center"
                     android:paddingHorizontal="50dp">
 
                     <TextView
@@ -247,7 +244,7 @@
 
                     <View
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_weight="1" />
 
                     <Button
@@ -268,8 +265,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
                     android:background="@android:color/transparent"
                     android:stretchColumns="0, 1"
                     android:visibility="gone">
@@ -297,7 +294,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
                             <TextView
@@ -306,7 +303,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/jalnan"
-                                android:text="00"
+                                android:text=""
                                 android:textColor="@color/graph_detail_txt"
                                 android:textSize="12sp" />
 
@@ -335,7 +332,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
                             <TextView
@@ -373,7 +370,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
 
@@ -412,7 +409,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
 
@@ -451,7 +448,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
                             <TextView
@@ -489,7 +486,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
                             <TextView
@@ -528,7 +525,7 @@
 
                             <View
                                 android:layout_width="0dp"
-                                android:layout_height="20dp"
+                                android:layout_height="50dp"
                                 android:layout_weight="1" />
 
                             <TextView
