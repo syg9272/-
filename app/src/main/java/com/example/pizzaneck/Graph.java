@@ -344,15 +344,14 @@ public class Graph extends AppCompatActivity {
         String result = String.format("%.2f", percent);
         bad_percent = (TextView)findViewById(R.id.percent);
         bad_percent.setText(result + "%");
-
-
+        
         //저번주에 비해
         comparison = (TextView)findViewById(R.id.grade_comparison);
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
         int grade_result = sum_last_week - sum;
 
         if(sum_last_week == 0){
-            comparison.setText("이런, 지난주 데이터가 없어요..");
+            comparison.setText("이런, 데이터가 없어요..");
             comparison.setTextColor(getResources().getColor(R.color.OnBackground));
         }
         else if(grade_result > 9){

@@ -146,8 +146,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="50dp">
 
                     <TextView
@@ -188,8 +188,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="50dp">
 
                     <TextView
@@ -264,8 +264,8 @@
                     android:id="@+id/graph_table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="35dp"
                     android:background="@android:color/transparent"
                     android:stretchColumns="0, 1"
@@ -313,6 +313,7 @@
                     <TableRow
                         android:layout_width="312dp"
                         android:layout_height="1dp">
+
                         <LinearLayout
                             android:layout_width="280dp"
                             android:layout_height="28dp"
@@ -351,6 +352,7 @@
                     <TableRow
                         android:layout_width="312dp"
                         android:layout_height="1dp">
+
                         <LinearLayout
                             android:layout_width="280dp"
                             android:layout_height="28dp"
@@ -390,6 +392,7 @@
                     <TableRow
                         android:layout_width="312dp"
                         android:layout_height="1dp">
+
                         <LinearLayout
                             android:layout_width="280dp"
                             android:layout_height="28dp"
@@ -429,6 +432,7 @@
                     <TableRow
                         android:layout_width="312dp"
                         android:layout_height="1dp">
+
                         <LinearLayout
                             android:layout_width="280dp"
                             android:layout_height="28dp"
@@ -467,6 +471,7 @@
                     <TableRow
                         android:layout_width="312dp"
                         android:layout_height="1dp">
+
                         <LinearLayout
                             android:layout_width="280dp"
                             android:layout_height="28dp"
@@ -555,8 +560,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="50dp">
 
                     <TextView
@@ -597,8 +602,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="50dp">
 
                     <TextView
@@ -630,7 +635,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/graph_verygood"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/graph_image_Great"
@@ -638,7 +643,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/graph_good"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/graph_image_Good"
@@ -646,7 +651,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/graph_soso"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/graph_image_Soso"
@@ -654,7 +659,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/graph_bad"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/graph_image_Bad"
@@ -662,7 +667,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/graph_verybad"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -679,10 +684,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:paddingHorizontal="50dp"
-                    android:layout_marginBottom="20dp">
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="50dp">
 
                     <View
                         android:layout_width="0dp"
@@ -693,7 +698,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/graph_expression"/>
+                        android:src="@drawable/graph_expression" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
