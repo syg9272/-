@@ -215,7 +215,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
     }
-    
+
     // 오늘 총 사용시간 삽입
     public void insertUsingTime(int time){
         int table_time; //테이블에 들어있던 시간

@@ -288,19 +288,19 @@ public class Graph extends AppCompatActivity {
         //총 경고 횟수(3단위)의 값이 커질 때마다 등급 하락
         evaluation = (TextView)findViewById(R.id.graph_evaluation);
         int sum = g_dbHelper.warning_Total_Count_week();
-        if((sum / 7) < 3){
+        if(sum < 21){
             evaluation.setText("Excellent");
             evaluation.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
-        else if((sum / 7) >= 3 && (sum / 7) < 6){
+        else if(sum >= 21 && sum < 42){
             evaluation.setText("Great");
             evaluation.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
-        else if((sum / 7) >= 6 && (sum / 7) < 9){
+        else if(sum >= 42 && sum < 63){
             evaluation.setText("Good");
             evaluation.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
-        else if((sum / 7) >= 9 && (sum / 7) < 12){
+        else if(sum >= 63 && sum < 84){
             evaluation.setText("So so");
             evaluation.setTextColor(getResources().getColor(R.color.graph_soso_color));
         }
@@ -345,15 +345,15 @@ public class Graph extends AppCompatActivity {
         //저번주에 비해
         comparison = (TextView)findViewById(R.id.grade_comparison);
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
-        int grade_result = (sum_last_week - sum) / 7;
+        int grade_result = sum_last_week - sum;
 
-        if(grade_result > 6){
+        if(grade_result > 9){
             ImageView imageView = findViewById(R.id.graph_image_Excellent);
             comparison.setText("아주 좋아졌어요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
-        else if(grade_result <= 6 && grade_result > 0){
+        else if(grade_result <= 9 && grade_result > 0){
             ImageView imageView = findViewById(R.id.graph_image_Great);
             comparison.setText("좋아지고 있네요  ");
             imageView.setVisibility(View.VISIBLE);
@@ -365,7 +365,7 @@ public class Graph extends AppCompatActivity {
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
-        else if(grade_result >= -6 && grade_result < 0){
+        else if(grade_result >= -9 && grade_result < 0){
             ImageView imageView = findViewById(R.id.graph_image_Soso);
             comparison.setText("조금 더 노력하세요  ");
             imageView.setVisibility(View.VISIBLE);
