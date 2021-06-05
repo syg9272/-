@@ -63,53 +63,13 @@ public class Graph extends AppCompatActivity {
         setContentView(R.layout.graph);
         setToolbar();
 
+        //realtimeDBHelper.java 데이터 불러옴
         g_dbHelper = new RealtimeDBHelper(Graph.this, "Realtime.db", null, 1);
-
 
         //디비생성
         db = g_dbHelper.getWritableDatabase();
         g_dbHelper.onCreate(db);
-
-        //forward_head_posture_time 임의 데이터
-//        g_dbHelper.insertBadTime("2021-05-19",30);
-//        g_dbHelper.insertBadTime("2021-05-20",30);
-//        g_dbHelper.insertBadTime("2021-05-21",30);
-//        g_dbHelper.insertBadTime("2021-05-22",30);
-//        g_dbHelper.insertBadTime("2021-05-23",30);
-//        g_dbHelper.insertBadTime("2021-05-24",30);
-//        g_dbHelper.insertBadTime("2021-05-25",30);
-//        g_dbHelper.insertBadTime("2021-05-26",30);
-//        g_dbHelper.insertBadTime("2021-05-27",30);
-//        g_dbHelper.insertBadTime("2021-05-28",30);
-//        g_dbHelper.insertBadTime("2021-05-29",30);
-//        g_dbHelper.insertBadTime("2021-05-30",30);
-//        g_dbHelper.insertBadTime("2021-05-31",30);
-//        g_dbHelper.insertBadTime("2021-06-01",30);
-//        g_dbHelper.insertBadTime("2021-06-02",30);
-//        g_dbHelper.insertBadTime("2021-06-03",30);
-//        g_dbHelper.insertBadTime("2021-06-04",30);
-//
-//        //using_time 임의 데이터
-//        g_dbHelper.insertUsingTime(100, "2021-05-19");
-//        g_dbHelper.insertUsingTime(100, "2021-05-20");
-//        g_dbHelper.insertUsingTime(100, "2021-05-21");
-//        g_dbHelper.insertUsingTime(100, "2021-05-22");
-//        g_dbHelper.insertUsingTime(120, "2021-05-23");
-//        g_dbHelper.insertUsingTime(140, "2021-05-24");
-//        g_dbHelper.insertUsingTime(180, "2021-05-25");
-//        g_dbHelper.insertUsingTime(152, "2021-05-26");
-//        g_dbHelper.insertUsingTime(135, "2021-05-27");
-//        g_dbHelper.insertUsingTime(147, "2021-05-28");
-//        g_dbHelper.insertUsingTime(145, "2021-05-29");
-//        g_dbHelper.insertUsingTime(200, "2021-05-30");
-//        g_dbHelper.insertUsingTime(105, "2021-05-31");
-//        g_dbHelper.insertUsingTime(200, "2021-06-01");
-//        g_dbHelper.insertUsingTime(124, "2021-06-02");
-//        g_dbHelper.insertUsingTime(170, "2021-06-03");
-//        g_dbHelper.insertUsingTime(50, "2021-06-04");
-
         db.close();
-
 
         BarChart barChart = findViewById(R.id.graph_total);
 
@@ -210,7 +170,7 @@ public class Graph extends AppCompatActivity {
         SimpleDateFormat today_pattern = new SimpleDateFormat("yyyy-MM-dd");
         String today_format = today_pattern.format(day_seventh);
 
-        // 자세히보기 내용 >> 나쁜자세 지속시간 (형식 ex.) 20 sec
+        // 자세히보기 내용 >> 나쁜자세 지속시간 (형식 ex.) 1 min 20 sec
         time[0] = (TextView)findViewById(R.id.first_date_txt);
         time[1] = (TextView)findViewById(R.id.second_date_txt);
         time[2] = (TextView)findViewById(R.id.third_date_txt);
@@ -230,8 +190,6 @@ public class Graph extends AppCompatActivity {
                 "BETWEEN '" + day1 + "' AND '" + today_format + "'", null);
 
         // 그래프에 값 넣어줌 (좋은 자세 지속 시간, 나쁜 자세 지속 시간)
-
-
         int good_time;
         int using_time_total = 0;
         int good_time_total = 0;
@@ -286,7 +244,6 @@ public class Graph extends AppCompatActivity {
             bad_time_total += DB_Data[i][0];
             good_time_total += DB_Data[i][1] - DB_Data[i][0];
         }
-
         db.close();
 
         //그래프 세팅
@@ -316,7 +273,6 @@ public class Graph extends AppCompatActivity {
         xAxis.enableGridDashedLine(0, 24, 0); //그리드 라인 설정
         xAxis.setEnabled(false); //x축 값 비활성화
 
-
         //Y축 속성
         YAxis yLAxis = barChart.getAxisLeft();
         yLAxis.setTextColor(getResources().getColor(R.color.main_color)); //Y축 레이블 색상
@@ -332,19 +288,19 @@ public class Graph extends AppCompatActivity {
         //총 경고 횟수(3단위)의 값이 커질 때마다 등급 하락
         evaluation = (TextView)findViewById(R.id.graph_evaluation);
         int sum = g_dbHelper.warning_Total_Count_week();
-        if(sum < 3){
+        if((sum / 7) < 3){
             evaluation.setText("Excellent");
             evaluation.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
-        else if(sum >= 3 && sum < 6){
+        else if((sum / 7) >= 3 && (sum / 7) < 6){
             evaluation.setText("Great");
             evaluation.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
-        else if(sum >= 6 && sum < 9){
+        else if((sum / 7) >= 6 && (sum / 7) < 9){
             evaluation.setText("Good");
             evaluation.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
-        else if(sum >= 9 && sum < 12){
+        else if((sum / 7) >= 9 && (sum / 7) < 12){
             evaluation.setText("So so");
             evaluation.setTextColor(getResources().getColor(R.color.graph_soso_color));
         }
@@ -389,26 +345,27 @@ public class Graph extends AppCompatActivity {
         //저번주에 비해
         comparison = (TextView)findViewById(R.id.grade_comparison);
         int sum_last_week = g_dbHelper.warning_Total_Count_last_week();
+        int grade_result = (sum_last_week - sum) / 7;
 
-        if((sum_last_week - sum) > 6){
+        if(grade_result > 6){
             ImageView imageView = findViewById(R.id.graph_image_Excellent);
             comparison.setText("아주 좋아졌어요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_excellent_color));
         }
-        else if((sum_last_week - sum) <= 6 && (sum_last_week - sum) > 0){
+        else if(grade_result <= 6 && grade_result > 0){
             ImageView imageView = findViewById(R.id.graph_image_Great);
             comparison.setText("좋아지고 있네요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_great_color));
         }
-        else if((sum_last_week - sum) == 0){
+        else if(grade_result == 0){
             ImageView imageView = findViewById(R.id.graph_image_Good);
             comparison.setText("똑같아요  ");
             imageView.setVisibility(View.VISIBLE);
             comparison.setTextColor(getResources().getColor(R.color.graph_good_color));
         }
-        else if((sum_last_week - sum) >= -6 && (sum_last_week - sum) < 0){
+        else if(grade_result >= -6 && grade_result < 0){
             ImageView imageView = findViewById(R.id.graph_image_Soso);
             comparison.setText("조금 더 노력하세요  ");
             imageView.setVisibility(View.VISIBLE);
@@ -421,7 +378,6 @@ public class Graph extends AppCompatActivity {
             comparison.setTextColor(getResources().getColor(R.color.graph_bad_color));
         }
     }
-
 
     //자세히보기 버튼 클릭시 이벤트 처리
     public Button btn1;
@@ -492,6 +448,7 @@ public class Graph extends AppCompatActivity {
             }
         });
     }
+
     //툴바 우측에 버튼 생성 (설정버튼)
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

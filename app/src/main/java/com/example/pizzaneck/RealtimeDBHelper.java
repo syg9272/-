@@ -96,8 +96,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
                 "WHERE date " +
                 "BETWEEN '" + week_ago_format + "' AND '" + today_format + "'", null);
 
-        int sum = 0;
-        sum = cursor.getCount();
+        int sum = cursor.getCount();
 
         db.close();
         return sum;
@@ -125,12 +124,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
                 "WHERE date " +
                 "BETWEEN '" + last_week_first_format + "' AND '" + last_week_seventh_format + "'", null);
 
-        int count = 0;
-        int sum = 0;
-        while(cursor.moveToNext()){
-            count = cursor.getCount();
-            sum += count;
-        }
+        int sum = cursor.getCount();
 
         db.close();
         return sum;
@@ -181,7 +175,6 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
     // using time
     public void insertUsingTime(int time, String date){
         int table_time; //테이블에 들어있던 시간
@@ -222,8 +215,7 @@ public class RealtimeDBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
     }
-
-
+    
     // 오늘 총 사용시간 삽입
     public void insertUsingTime(int time){
         int table_time; //테이블에 들어있던 시간
