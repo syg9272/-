@@ -636,8 +636,10 @@ public abstract class CameraActivity extends AppCompatActivity
               if(!(recognition.getTitle().equals("bad_left") || recognition.getTitle().equals("bad_right"))){  //good으로 바뀐다면 (bad가 아니라면, 식별 불가일때 포함하기 위함)
                 flag = 0;
                 result_text.setText("");
-                result_text.setBackgroundColor(Color.argb(0x00,0x00,0x00,0x00));;
-                endAlarm();
+                result_text.setBackgroundColor(Color.argb(0x00,0x00,0x00,0x00));
+                if(startTime != 0) {
+                  endAlarm();
+                }
               }
             }
           }
@@ -784,7 +786,9 @@ public abstract class CameraActivity extends AppCompatActivity
     switch (item.getItemId()) {
       //설정버튼
       case R.id.setting:
-        endAlarm();
+        if(startTime != 0) {
+          endAlarm();
+        }
         totalEndTime = System.currentTimeMillis();
         helper.insertUsingTime((int)(totalEndTime - totalStartTime)/1000);
         Intent intent = new Intent(getApplicationContext(), Setting.class);
@@ -795,7 +799,9 @@ public abstract class CameraActivity extends AppCompatActivity
 
   @Override
   public void onBackPressed(){
-    endAlarm();
+    if(startTime != 0) {
+      endAlarm();
+    }
     totalEndTime = System.currentTimeMillis();
     helper.insertUsingTime((int)(totalEndTime - totalStartTime)/1000);
     super.onBackPressed();
@@ -830,6 +836,7 @@ public abstract class CameraActivity extends AppCompatActivity
     else if(notify.equals("VIBRATE")){
       vibrator.cancel();  //진동 중지
     }
+    startTime = 0;
   }
 
   // SharedPreferences에서 설정 불러오는 함수
