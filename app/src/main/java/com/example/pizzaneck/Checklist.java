@@ -412,13 +412,8 @@ public class Checklist extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(id == R.id.realtime){
-                    Intent intent = new Intent(getApplicationContext(), Realtime.class);
+                    Intent intent = new Intent(getApplicationContext(), ClassifierActivity.class);
                     startActivity(intent);
-                }
-                else if(id == R.id.gallery){
-                    Intent intent = new Intent(getApplicationContext(), Gallery.class);
-                    startActivity(intent);
-
                 }
                 else if(id == R.id.stretching){
                     Intent intent = new Intent(getApplicationContext(), Stretching.class);

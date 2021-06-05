@@ -10,10 +10,6 @@
             android:icon="@drawable/ic_videocamera"
             android:title="실시간 감시"/>
         <item
-            android:id="@+id/gallery"
-            android:icon="@drawable/ic_image"
-            android:title="갤러리에서"/>
-        <item
             android:id="@+id/stretching"
             android:icon="@drawable/ic_search"
             android:title="스트레칭"/>
