@@ -8,11 +8,30 @@
 
 </br>
 
-|핵심기능                       |구현                         |
-|-------------------------------|-----------------------------|
-|자세 실시간 감지               |인공지능                        |
-|통계자료                       |SQLite                         |
-|데이터 수집                    |웹 크롤러                     |
+✔️**구현 사항**
+
+- AI를 활용한 잘못된 자세 실시간 감지
+- 핸드폰 알림을 통한 경고
+- 스트레칭 정보 제공을 통한 예방효과
+- 통계자료를 통한 각종 데이터 시각화
+- 테마 색상, 알림 설정
+
+✔️**담당 역할**
+
+- Mobile, 딥러닝 모델 학습
+- UI/UX 디자인
+- 모바일 화면 구성
+- 딥러닝 모델 학습 데이터 수집
+
+✔️**기술 스택**
+</br>
+</br>
+<img src="https://img.shields.io/badge/androidstudio-3DDC84?style=for-the-badge&logo=androidstudio&logoColor=white"> 
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+<img src="https://img.shields.io/badge/sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"> 
+<img src="https://img.shields.io/badge/github-F05032?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/adobexd-FF61F6?style=for-the-badge&logo=adobexd&logoColor=white">
 
 </br>
 
@@ -33,6 +52,7 @@ Maxpooling을 반복하여 학습 시키고, (Flatten과 Dense함수를 이용)
 
 
 - 구현결과
+
 <메인페이지>
 ![image](https://user-images.githubusercontent.com/55950992/232935810-824f5dfd-3403-41d9-aeb3-d7a3e17e6ae5.png)
 <실시간 자세 감지>
